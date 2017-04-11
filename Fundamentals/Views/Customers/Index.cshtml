@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Fundamentals.Models.CustomerViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customers</h2>
+@if (Model.Any())
+{
+    <ul>
+        @foreach (var customer in Model)
+        {
+            <li>
+                @Html.ActionLink(customer.FirstName + " " + customer.LastName, "GetCustomer", new {id = customer.Id})
+
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>We have no customers yet</p>
+}
