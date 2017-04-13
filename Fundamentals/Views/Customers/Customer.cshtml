@@ -5,12 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>View</h2>
+
 
 
 
 @using (Html.BeginForm("SaveCustomer","Customers",FormMethod.Post,new{ customer = Model}))
 {
+    
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">

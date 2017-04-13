@@ -162,8 +162,26 @@
     <Compile Include="Migrations\201704111653198_AddSystemUsers.Designer.cs">
       <DependentUpon>201704111653198_AddSystemUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704121628312_ApplyAnnotations.cs" />
+    <Compile Include="Migrations\201704121628312_ApplyAnnotations.Designer.cs">
+      <DependentUpon>201704121628312_ApplyAnnotations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704131032322_MemberTypes.cs" />
+    <Compile Include="Migrations\201704131032322_MemberTypes.Designer.cs">
+      <DependentUpon>201704131032322_MemberTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704131042071_EnumFieldNotMapped.cs" />
+    <Compile Include="Migrations\201704131042071_EnumFieldNotMapped.Designer.cs">
+      <DependentUpon>201704131042071_EnumFieldNotMapped.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704131042307_PopulateMemberTypes.cs" />
+    <Compile Include="Migrations\201704131042307_PopulateMemberTypes.Designer.cs">
+      <DependentUpon>201704131042307_PopulateMemberTypes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Authorization\MemberTypes.cs" />
+    <Compile Include="Models\Authorization\MemberTypeEnum.cs" />
+    <Compile Include="Models\Authorization\MemberType.cs" />
+    <Compile Include="Models\Authorization\UserViewModel.cs" />
     <Compile Include="Models\CustomerViewModel.cs" />
     <Compile Include="Models\DBContext\FundamentalsDBContext.cs" />
     <Compile Include="Models\MovieViewModel.cs" />
@@ -318,6 +336,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704111653198_AddSystemUsers.resx">
       <DependentUpon>201704111653198_AddSystemUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704121628312_ApplyAnnotations.resx">
+      <DependentUpon>201704121628312_ApplyAnnotations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704131032322_MemberTypes.resx">
+      <DependentUpon>201704131032322_MemberTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704131042071_EnumFieldNotMapped.resx">
+      <DependentUpon>201704131042071_EnumFieldNotMapped.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704131042307_PopulateMemberTypes.resx">
+      <DependentUpon>201704131042307_PopulateMemberTypes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -6,10 +6,15 @@ namespace Fundamentals.Models
     public class CustomerViewModel 
     {
         [Key]
+        [Required]
         public int Id { get; set; }
 
+        [Required]
+        [MaxLength(50)]
         public string FirstName { get; set; }
 
+        [Required]
+        [MaxLength(50)]
         public string LastName { get; set; }
 
         [DataType(DataType.DateTime)]

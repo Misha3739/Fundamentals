@@ -23,6 +23,13 @@ namespace Fundamentals.Controllers
             return View(customers);
         }
 
+        public ActionResult CreateCustomer()
+        {
+         
+            return View("Customer", new CustomerViewModel());
+        }
+
+
         public ActionResult GetCustomer(int id)
         {
             var customers = _dbContext.Customers.ToList();

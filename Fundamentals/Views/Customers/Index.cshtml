@@ -4,21 +4,49 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .href-class {
+        font-size: x-large;
+        /*font-weigth: bold;*/
+    }
+     
+</style>
+<div id="divCreateNew">
+    <h2>Customers</h2>
+    @if (Model.Any())
+    {
+        <ul>
+            @foreach (var customer in Model)
+            {
+                <li>
+                    @Html.ActionLink(customer.FirstName + " " + customer.LastName, "GetCustomer", new {  id = customer.Id},new{ @class = "href-class"})
 
-<h2>Customers</h2>
-@if (Model.Any())
-{
-    <ul>
-        @foreach (var customer in Model)
-        {
-            <li>
-                @Html.ActionLink(customer.FirstName + " " + customer.LastName, "GetCustomer", new {id = customer.Id})
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>We have no customers yet</p>
+    }
 
-            </li>
-        }
-    </ul>
-}
-else
-{
-    <p>We have no customers yet</p>
-}
+    <button type="button" class="form-control" style="width:170px" id="createBtn">Create</button>
+</div>
+
+<script>
+    $(document).ready(function() {
+
+        $("#createBtn").click(
+            function () {
+                $.ajax({
+                    type: "GET",
+                    url: '@Url.Action("CreateCustomer")',
+                    success: function(data) {
+                        $("#divCreateNew").html(data);
+                    }
+                });
+            }
+        );
+    });
+
+</script>
