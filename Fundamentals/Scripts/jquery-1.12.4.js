@@ -8778,7 +8778,7 @@ if ( !support.optSelected ) {
 jQuery.each( [
 	"tabIndex",
 	"readOnly",
-	"maxLength",
+	"StringLength",
 	"cellSpacing",
 	"cellPadding",
 	"rowSpan",

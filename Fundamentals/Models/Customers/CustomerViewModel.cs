@@ -10,16 +10,18 @@ namespace Fundamentals.Models
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [StringLength(50)]
         public string FirstName { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [StringLength(50)]
         public string LastName { get; set; }
 
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public  DateTime BirthDate { get; set; }
+
+
     }
 
     

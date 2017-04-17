@@ -178,13 +178,23 @@
     <Compile Include="Migrations\201704131042307_PopulateMemberTypes.Designer.cs">
       <DependentUpon>201704131042307_PopulateMemberTypes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704171706417_Ganres.cs" />
+    <Compile Include="Migrations\201704171706417_Ganres.Designer.cs">
+      <DependentUpon>201704171706417_Ganres.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704171911279_PopulateGanres.cs" />
+    <Compile Include="Migrations\201704171911279_PopulateGanres.Designer.cs">
+      <DependentUpon>201704171911279_PopulateGanres.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Authorization\MemberTypeEnum.cs" />
     <Compile Include="Models\Authorization\MemberType.cs" />
     <Compile Include="Models\Authorization\UserViewModel.cs" />
-    <Compile Include="Models\CustomerViewModel.cs" />
+    <Compile Include="Models\Customers\CustomerViewModel.cs" />
     <Compile Include="Models\DBContext\FundamentalsDBContext.cs" />
-    <Compile Include="Models\MovieViewModel.cs" />
+    <Compile Include="Models\Movies\EditMovieViewModel.cs" />
+    <Compile Include="Models\Movies\Ganres.cs" />
+    <Compile Include="Models\Movies\MovieViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -196,15 +206,20 @@
     <Content Include="Content\bootstrap-datepicker3.min.css" />
     <Content Include="Content\bootstrap-datepicker3.standalone.css" />
     <Content Include="Content\bootstrap-datepicker3.standalone.min.css" />
+    <Content Include="Content\bootstrap-responsive.css" />
+    <Content Include="Content\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.solar.css" />
+    <Content Include="Content\images\glyphicons-halflings-white.png" />
+    <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
+    <Content Include="Scripts\bootstrap-table.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -313,10 +328,11 @@
     <Content Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\Customers\Customer.cshtml" />
     <Content Include="Views\Customers\CustomerNotFound.cshtml" />
+    <Content Include="Views\Movies\Index.cshtml" />
+    <Content Include="Views\Movies\EditMovie.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Movies\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -348,6 +364,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704131042307_PopulateMemberTypes.resx">
       <DependentUpon>201704131042307_PopulateMemberTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704171706417_Ganres.resx">
+      <DependentUpon>201704171706417_Ganres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704171911279_PopulateGanres.resx">
+      <DependentUpon>201704171911279_PopulateGanres.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

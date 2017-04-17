@@ -340,7 +340,7 @@ $.extend($.validator, {
 		creditcard: "Please enter a valid credit card number.",
 		equalTo: "Please enter the same value again.",
 		accept: "Please enter a value with a valid extension.",
-		maxlength: $.validator.format("Please enter no more than {0} characters."),
+		StringLength: $.validator.format("Please enter no more than {0} characters."),
 		minlength: $.validator.format("Please enter at least {0} characters."),
 		rangelength: $.validator.format("Please enter a value between {0} and {1} characters long."),
 		range: $.validator.format("Please enter a value between {0} and {1}."),
@@ -905,9 +905,9 @@ $.extend($.validator, {
 			}
 		}
 		
-		// maxlength may be returned as -1, 2147483647 (IE) and 524288 (safari) for text inputs
-		if (rules.maxlength && /-1|2147483647|524288/.test(rules.maxlength)) {
-			delete rules.maxlength;
+		// StringLength may be returned as -1, 2147483647 (IE) and 524288 (safari) for text inputs
+		if (rules.StringLength && /-1|2147483647|524288/.test(rules.StringLength)) {
+			delete rules.StringLength;
 		}
 		
 		return rules;
@@ -963,7 +963,7 @@ $.extend($.validator, {
 		});
 		
 		// clean number parameters
-		$.each(['minlength', 'maxlength', 'min', 'max'], function() {
+		$.each(['minlength', 'StringLength', 'min', 'max'], function() {
 			if (rules[this]) {
 				rules[this] = Number(rules[this]);
 			}
@@ -981,10 +981,10 @@ $.extend($.validator, {
 				delete rules.min;
 				delete rules.max;
 			}
-			if (rules.minlength && rules.maxlength) {
-				rules.rangelength = [rules.minlength, rules.maxlength];
+			if (rules.minlength && rules.StringLength) {
+				rules.rangelength = [rules.minlength, rules.StringLength];
 				delete rules.minlength;
-				delete rules.maxlength;
+				delete rules.StringLength;
 			}
 		}
 		
@@ -1112,8 +1112,8 @@ $.extend($.validator, {
 			return this.optional(element) || this.getLength($.trim(value), element) >= param;
 		},
 		
-		// http://docs.jquery.com/Plugins/Validation/Methods/maxlength
-		maxlength: function(value, element, param) {
+		// http://docs.jquery.com/Plugins/Validation/Methods/StringLength
+		StringLength: function(value, element, param) {
 			return this.optional(element) || this.getLength($.trim(value), element) <= param;
 		},
 		

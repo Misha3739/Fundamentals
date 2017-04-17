@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Reflection;
 using Fundamentals.Models.Authorization;
+using Fundamentals.Models.Movies;
 
 namespace Fundamentals.Models.FundamentalsDBContext
 {
@@ -32,5 +33,7 @@ namespace Fundamentals.Models.FundamentalsDBContext
         public DbSet<MovieViewModel> Movies { get; set; }
 
         public DbSet<UserViewModel> MemberTypes { get; set; }
+
+        public DbSet<Ganres> Ganres { get; set; }
     }
 }

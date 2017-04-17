@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Fundamentals.Models.Movies.MovieViewModel>
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Movies</h2>
+
+
+<div id="divMoviesEditor">
+    <input type="button" class="btn btn-default" value="New movie" id="btnNewMovie" />
+</div>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Play
+        </th>
+        <th>
+            Ganre
+        </th>
+    </tr>
+        @foreach (var movie in Model)
+        {
+            <tr>
+              
+                <td>@Html.ActionLink(movie.Name, "EditMovie", new { id = movie.Id }, new { @class = "href-class" })</td>
+                <td>@Html.ActionLink("Play", "PlayMovie", new { id = movie.Id }, new { @class = "href-class" })</td>
+                <td>@movie.Ganre.Name</td>
+            </tr>
+        }
+    </thead>
+</table>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script>
+
+     $(document).ready(function() {
+
+         $("#btnNewMovie").click(
+            function () {
+                $.ajax({
+                    type: "GET",
+                    url: '@Url.Action("NewMovie")',
+                    success: function(data) {
+                        $("#divMoviesEditor").html(data);
+                    }
+                });
+            }
+        );
+    });
+
+</script>

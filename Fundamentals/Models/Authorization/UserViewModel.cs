@@ -17,16 +17,16 @@ namespace Fundamentals.Models.Authorization
 
 
         [Required]
-        [MaxLength(50)]
+        [StringLength(50)]
         public string FirstName { get; set; }
 
 
         [Required]
-        [MaxLength(50)]
+        [StringLength(50)]
         public string LastName { get; set; }
 
 
-        [MaxLength(50)]
+        [StringLength(50)]
         public string Patronimic { get; set; }
 
         public DateTime? BirthDate { get; set; }

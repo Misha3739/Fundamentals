@@ -75,5 +75,11 @@ namespace Fundamentals.Controllers
                 }
             };
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            this._dbContext.Dispose();
+            base.Dispose(disposing);
+        }
     }
 }
