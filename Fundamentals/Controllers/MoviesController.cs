@@ -65,7 +65,7 @@ namespace Fundamentals.Controllers
         public ActionResult PlayMovie(int id)
         {
             var found = _dbContext.Movies.SingleOrDefault(x => x.Id == id);
-            
+            return Json("OK");
         }
     }
 }

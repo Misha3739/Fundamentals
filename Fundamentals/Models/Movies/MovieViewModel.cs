@@ -8,6 +8,8 @@ namespace Fundamentals.Models.Movies
         [Key]
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "Name cannot be null or empty")]
+        [StringLength(50)]
         public string Name { get; set; }
 
         public byte[] Content { get; set; }
