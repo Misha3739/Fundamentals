@@ -66,6 +66,7 @@ namespace Fundamentals.Controllers
                 }
 
                 var saved = _dbContext.Files.Add(file);
+                _dbContext.SaveChanges();
                 model.Movie.FileId = saved.Id;
             }
            
@@ -76,7 +77,16 @@ namespace Fundamentals.Controllers
 
 
 
-           return RedirectToAction("Index");
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult PlayMovie(int id)
+        {
+            var movie = _dbContext.Movies.SingleOrDefault(x => x.Id == id);
+            var file = _dbContext.Files.FirstOrDefault(x => x.Id == movie.FileId);
+            if (file != null)
+                return File(file.Content, "audio/mp3");
+            return Json("No file found");
         }
 
         protected override void Dispose(bool disposing)
@@ -85,10 +95,6 @@ namespace Fundamentals.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult PlayMovie(int id)
-        {
-            var found = _dbContext.Movies.SingleOrDefault(x => x.Id == id);
-            return Json("OK");
-        }
+    
     }
 }

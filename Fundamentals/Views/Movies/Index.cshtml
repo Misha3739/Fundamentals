@@ -29,7 +29,15 @@
             <tr>
               
                 <td>@Html.ActionLink(movie.Name, "EditMovie", new { id = movie.Id }, new { @class = "href-class" })</td>
-                <td>@Html.ActionLink("Play", "PlayMovie", new { id = movie.Id }, new { @class = "href-class" })</td>
+                <td>
+                    <audio controls="" src="@Url.Action("PlayMovie", new { id = movie.Id })" id="player_'@movie.Id'"></audio>
+                    @*<div>
+                        <button onclick="document.getElementById('player_'+@movie.Id).play()">Play</button>
+                        <button onclick="document.getElementById('player').pause()">Pause</button>
+                        <button onclick="document.getElementById('player').volume += 0.1">Vol+ </button>
+                        <button onclick="document.getElementById('player').volume -= 0.1">Vol- </button>
+                    </div>*@
+                </td>
                 <td>@movie.Ganre.Name</td>
             </tr>
         }
