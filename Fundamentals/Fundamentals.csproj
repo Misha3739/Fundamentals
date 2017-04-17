@@ -190,6 +190,10 @@
     <Compile Include="Migrations\201704171948287_MovieAttributes.Designer.cs">
       <DependentUpon>201704171948287_MovieAttributes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704172027076_Files.cs" />
+    <Compile Include="Migrations\201704172027076_Files.Designer.cs">
+      <DependentUpon>201704172027076_Files.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Authorization\MemberTypeEnum.cs" />
     <Compile Include="Models\Authorization\MemberType.cs" />
@@ -197,6 +201,7 @@
     <Compile Include="Models\Customers\CustomerViewModel.cs" />
     <Compile Include="Models\DBContext\FundamentalsDBContext.cs" />
     <Compile Include="Models\Movies\EditMovieViewModel.cs" />
+    <Compile Include="Models\Movies\File.cs" />
     <Compile Include="Models\Movies\Ganres.cs" />
     <Compile Include="Models\Movies\MovieViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -377,6 +382,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704171948287_MovieAttributes.resx">
       <DependentUpon>201704171948287_MovieAttributes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704172027076_Files.resx">
+      <DependentUpon>201704172027076_Files.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -35,5 +35,7 @@ namespace Fundamentals.Models.FundamentalsDBContext
         public DbSet<UserViewModel> MemberTypes { get; set; }
 
         public DbSet<Ganres> Ganres { get; set; }
+
+        public DbSet<File> Files { get; set; }
     }
 }

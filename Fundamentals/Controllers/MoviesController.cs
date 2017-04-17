@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
+using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using Fundamentals.Models;
 using Fundamentals.Models.FundamentalsDBContext;
 using Fundamentals.Models.Movies;
+using File = Fundamentals.Models.Movies.File;
 
 namespace Fundamentals.Controllers
 {
@@ -47,12 +51,31 @@ namespace Fundamentals.Controllers
 
 
         [HttpPost]
-        public ActionResult Save(EditMovieViewModel model)
+        public ActionResult Save(EditMovieViewModel model, HttpPostedFileBase upload)
         {
-            var found = _dbContext.Movies.SingleOrDefault(x => x.Id == model.Movie.Id);
+            if (upload != null && upload.ContentLength > 0)
+            {
+                var file = new File
+                {
+                    FileName = System.IO.Path.GetFileName(upload.FileName),
+                    ContentType = upload.ContentType
+                };
+                using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                {
+                    file.Content = reader.ReadBytes(upload.ContentLength);
+                }
 
-           _dbContext.Movies.AddOrUpdate(model.Movie);
+                var saved = _dbContext.Files.Add(file);
+                model.Movie.FileId = saved.Id;
+            }
+           
+
+
+            _dbContext.Movies.AddOrUpdate(model.Movie);
             _dbContext.SaveChanges();
+
+
+
            return RedirectToAction("Index");
         }
 
