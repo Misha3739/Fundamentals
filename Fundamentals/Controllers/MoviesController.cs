@@ -86,7 +86,7 @@ namespace Fundamentals.Controllers
             var file = _dbContext.Files.FirstOrDefault(x => x.Id == movie.FileId);
             if (file != null)
                 return File(file.Content, "audio/mp3");
-            return Json("No file found");
+            return File(new byte[0], "audio/mp3");
         }
 
         protected override void Dispose(bool disposing)
