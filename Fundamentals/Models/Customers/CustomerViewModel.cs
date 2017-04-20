@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Fundamentals.Models.Validation;
 
 namespace Fundamentals.Models
 {
@@ -19,6 +20,7 @@ namespace Fundamentals.Models
 
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [CustomerValidation]
         public  DateTime BirthDate { get; set; }
 
 

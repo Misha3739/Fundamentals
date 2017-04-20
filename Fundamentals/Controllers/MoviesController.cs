@@ -35,17 +35,21 @@ namespace Fundamentals.Controllers
                 Movie = new MovieViewModel(),
                 Ganres = _dbContext.Ganres.ToList()
             };
-            return View("EditMovie",model);
+            model.Movie.GanreId = model.Ganres.FirstOrDefault()?.Id ?? 0;
+            return View("GetMovie", model);
         }
 
-        public ActionResult EditMovie(int id)
+        public ActionResult GetMovie(int id)
         {
+            var movie = _dbContext.Movies.SingleOrDefault(x => x.Id == id);
+            if(movie == null)
+                   return View("MovieNotFound", id);
             EditMovieViewModel model = new EditMovieViewModel()
             {
-                Movie = _dbContext.Movies.Single(x=>x.Id == id),
+                Movie = movie,
                 Ganres = _dbContext.Ganres.ToList()
             };
-            return View("EditMovie", model);
+            return View("GetMovie", model);
         }
 
 
@@ -69,7 +73,7 @@ namespace Fundamentals.Controllers
                 _dbContext.SaveChanges();
                 model.Movie.FileId = saved.Id;
             }
-           
+
 
 
             _dbContext.Movies.AddOrUpdate(model.Movie);

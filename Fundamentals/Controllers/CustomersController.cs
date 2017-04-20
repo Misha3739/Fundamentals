@@ -49,7 +49,7 @@ namespace Fundamentals.Controllers
             }
             catch (Exception e)
             {
-                return Content($"Exception on DB occured: {e.InnerException?.InnerException?.Message}");
+                return Json($"Exception on DB occured: {e.Message}");
             }
            
             return RedirectToAction("Index");

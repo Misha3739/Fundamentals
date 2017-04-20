@@ -7,9 +7,10 @@ namespace Fundamentals.Models.Movies
     public class MovieViewModel
     {
         [Key]
+        [Required]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Name cannot be null or empty")]
+        [Required]
         [StringLength(50)]
         public string Name { get; set; }
 
@@ -22,6 +23,6 @@ namespace Fundamentals.Models.Movies
         public File File { get; set; }
 
         [ForeignKey(nameof(File))]
-        public int FileId { get; set; }
+        public int? FileId { get; set; }
     }
 }

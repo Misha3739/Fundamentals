@@ -9,45 +9,45 @@
 
 <div id="divMoviesEditor">
     <input type="button" class="btn btn-default" value="New movie" id="btnNewMovie" />
-</div>
 
-<table class="table">
-    <thead>
-    <tr>
-        <th>
-            Name
-        </th>
-        <th>
-            Play
-        </th>
-        <th>
-            Ganre
-        </th>
-    </tr>
-        @foreach (var movie in Model)
-        {
+
+    <table class="table">
+        <thead>
             <tr>
-              
-                <td>@Html.ActionLink(movie.Name, "EditMovie", new { id = movie.Id }, new { @class = "href-class" })</td>
-                <td>
-                    <audio controls="" src="@Url.Action("PlayMovie", new { id = movie.Id })" id="player_'@movie.Id'"></audio>
-                    @*<div>
-                        <button onclick="document.getElementById('player_'+@movie.Id).play()">Play</button>
-                        <button onclick="document.getElementById('player').pause()">Pause</button>
-                        <button onclick="document.getElementById('player').volume += 0.1">Vol+ </button>
-                        <button onclick="document.getElementById('player').volume -= 0.1">Vol- </button>
-                    </div>*@
-                </td>
-                <td>@movie.Ganre.Name</td>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Play
+                </th>
+                <th>
+                    Ganre
+                </th>
             </tr>
-        }
-    </thead>
-</table>
+            @foreach (var movie in Model)
+            {
+                <tr>
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+                    <td>@Html.ActionLink(movie.Name, "GetMovie", new { id = movie.Id }, new { @class = "href-class" })</td>
+                    <td>
+                        <audio controls="" src="@Url.Action("PlayMovie", new { id = movie.Id })" id="player_'@movie.Id'"></audio>
+                        @*<div>
+                                <button onclick="document.getElementById('player_'+@movie.Id).play()">Play</button>
+                                <button onclick="document.getElementById('player').pause()">Pause</button>
+                                <button onclick="document.getElementById('player').volume += 0.1">Vol+ </button>
+                                <button onclick="document.getElementById('player').volume -= 0.1">Vol- </button>
+                            </div>*@
+                    </td>
+                    <td>@movie.Ganre.Name</td>
+                </tr>
+            }
+        </thead>
+    </table>
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
 </div>
-
 <script>
 
      $(document).ready(function() {
