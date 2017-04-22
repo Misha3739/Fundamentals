@@ -35,6 +35,14 @@
         </div>
         
         <div class="form-group">
+            @Html.LabelFor(model => model.Movie.ReleaseDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Movie.ReleaseDate, "{0:dd/MM/yyyy}", new { @class = "form-control", id = "releaseDate" })
+                @Html.ValidationMessageFor(model => model.Movie.ReleaseDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <div class="form-group">
             <div class="col-md-10">
                 <label for="fileId" class = "control-label col-md-2">Movie file</label>
                 <input type="file" id="fileId" name="upload"  value="Choose File" class = "form-control" />
@@ -57,7 +65,17 @@
 
 
 <script>
+
     $(document).ready(function() {
+
+        $('#releaseDate').datepicker(
+        {
+            format: 'dd/MM/yyyy'
+        }); //Initialise any date pickers
+        $('.datepicker').change(function(e) {
+            var picker = $('.datepicker');
+        });
+
         function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
@@ -73,8 +91,7 @@
         $("#fileInputId").change(function() {
             readURL(this);
         });
-
-       
-            </script>
+    });
+        </script>
 
 

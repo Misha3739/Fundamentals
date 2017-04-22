@@ -18,6 +18,7 @@ namespace Fundamentals.Models
         [StringLength(50)]
         public string LastName { get; set; }
 
+        [Required]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [CustomerValidation]

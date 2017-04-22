@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Net;
 
@@ -13,6 +14,11 @@ namespace Fundamentals.Models.Movies
         [Required]
         [StringLength(50)]
         public string Name { get; set; }
+
+        [Required]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        public DateTime ReleaseDate { get; set; }
 
         public Ganres Ganre { get; set; }
 

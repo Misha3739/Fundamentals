@@ -40,6 +40,7 @@ namespace Fundamentals.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult SaveCustomer(CustomerViewModel customer)
         {
             try

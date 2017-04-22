@@ -55,6 +55,7 @@ namespace Fundamentals.Controllers
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(EditMovieViewModel model, HttpPostedFileBase upload)
         {
             if (upload != null && upload.ContentLength > 0)
