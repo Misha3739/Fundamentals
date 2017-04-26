@@ -53,6 +53,17 @@ namespace Fundamentals.Controllers
         }
 
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
+        {
+            var movie = _dbContext.Movies.SingleOrDefault(x => x.Id == id);
+            if (movie == null)
+                return HttpNotFound();
+            _dbContext.Movies.Remove(movie);
+            _dbContext.SaveChanges();
+            return Json("Movie was successfully  deleted");
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
