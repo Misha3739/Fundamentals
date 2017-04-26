@@ -12,6 +12,10 @@ namespace Fundamentals.Models.Validation
             var customer = validationContext.ObjectInstance  as CustomerViewModel;
             if (customer != null)
             {
+                if (customer.BirthDate.Year < 1900)
+                {
+                    return new ValidationResult("Too old customer!");
+                }
                 if (DateTime.Today.Year - customer.BirthDate.Year < 18)
                 {
                     return new ValidationResult("Customer should be older than 18");

@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Net;
+using Fundamentals.Models.Validation;
 
 namespace Fundamentals.Models.Movies
 {
@@ -18,6 +19,7 @@ namespace Fundamentals.Models.Movies
         [Required]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [MovieValidation]
         public DateTime ReleaseDate { get; set; }
 
         public Ganres Ganre { get; set; }

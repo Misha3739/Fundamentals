@@ -65,16 +65,24 @@
 
 
 <script>
-
-    $(document).ready(function() {
-
+    $(function () { // will trigger when the document is ready
         $('#releaseDate').datepicker(
-        {
-            format: 'dd/MM/yyyy'
-        }); //Initialise any date pickers
-        $('.datepicker').change(function(e) {
+            {
+                format: 'dd/MM/yyyy'
+            }); //Initialise any date pickers
+        $('.datepicker').change(function (e) {
             var picker = $('.datepicker');
         });
+    });
+    $(document).ready(function() {
+
+        //$('#releaseDate').datepicker(
+        //{
+        //    format: 'dd/MM/yyyy'
+        //}); //Initialise any date pickers
+        //$('.datepicker').change(function(e) {
+        //    var picker = $('.datepicker');
+        //});
 
         function readURL(input) {
             if (input.files && input.files[0]) {

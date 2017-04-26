@@ -43,6 +43,8 @@ namespace Fundamentals.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SaveCustomer(CustomerViewModel customer)
         {
+            if(!ModelState.IsValid)
+                return View("Customer", customer);
             try
             {
                 _dbContext.Customers.AddOrUpdate(customer);

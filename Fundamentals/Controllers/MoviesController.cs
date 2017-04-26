@@ -58,6 +58,11 @@ namespace Fundamentals.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Save(EditMovieViewModel model, HttpPostedFileBase upload)
         {
+            if (!ModelState.IsValid)
+            {
+                model.Ganres = _dbContext.Ganres.ToList();
+                return View("GetMovie", model);
+            }
             if (upload != null && upload.ContentLength > 0)
             {
                 var file = new File

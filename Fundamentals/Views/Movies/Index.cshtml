@@ -8,7 +8,7 @@
 
 
 <div id="divMoviesEditor">
-    <input type="button" class="btn btn-default" value="New movie" id="btnNewMovie" />
+    
 
 
     <table class="table">
@@ -43,16 +43,17 @@
             }
         </thead>
     </table>
+    @using (Html.BeginForm("NewMovie", "Movies", FormMethod.Get))
+    {
+        <input type="submit" class="btn btn-default" value="New movie" id="btnNewMovie"/>
+    }
 
-    @*<div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>*@
 </div>
 <script>
 
      $(document).ready(function() {
 
-         $("#btnNewMovie").click(
+         @*$("#btnNewMovie").click(
             function () {
                 $.ajax({
                     type: "GET",
@@ -62,7 +63,7 @@
                     }
                 });
             }
-        );
+        );*@
     });
 
 </script>

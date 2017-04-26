@@ -29,13 +29,16 @@
         <p>We have no customers yet</p>
     }
 
-    <button type="button" class="form-control" style="width:170px" id="createBtn">Create</button>
+    @using (Html.BeginForm("CreateCustomer","Customers", FormMethod.Get))
+    {
+        <button type="submit" class="form-control" style="width: 170px" id="createBtn">Create</button>
+    }
 </div>
 
 <script>
     $(document).ready(function() {
 
-        $("#createBtn").click(
+        @*$("#createBtn").click(
             function () {
                 $.ajax({
                     type: "GET",
@@ -45,7 +48,7 @@
                     }
                 });
             }
-        );
+        );*@
     });
 
 </script>

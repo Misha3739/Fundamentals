@@ -213,6 +213,7 @@
     <Compile Include="Models\Movies\Ganres.cs" />
     <Compile Include="Models\Movies\MovieViewModel.cs" />
     <Compile Include="Models\Validation\CustomerValidation.cs" />
+    <Compile Include="Models\Validation\MovieValidation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
