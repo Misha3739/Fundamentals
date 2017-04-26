@@ -6,7 +6,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Fundamentals.Models;
 
-namespace Fundamentals.API
+namespace Fundamentals.Controllers.API
 {
     public class CustomersController : BaseController
     {

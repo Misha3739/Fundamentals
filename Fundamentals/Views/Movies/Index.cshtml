@@ -11,7 +11,7 @@
     
 
 
-    <table class="table">
+    <table class="table" id="movies">
         <thead>
             <tr>
                 <th>
@@ -31,14 +31,12 @@
                     <td>@Html.ActionLink(movie.Name, "GetMovie", new { id = movie.Id }, new { @class = "href-class" })</td>
                     <td>
                         <audio controls="" src="@Url.Action("PlayMovie", new { id = movie.Id })" id="player_'@movie.Id'"></audio>
-                        @*<div>
-                                <button onclick="document.getElementById('player_'+@movie.Id).play()">Play</button>
-                                <button onclick="document.getElementById('player').pause()">Pause</button>
-                                <button onclick="document.getElementById('player').volume += 0.1">Vol+ </button>
-                                <button onclick="document.getElementById('player').volume -= 0.1">Vol- </button>
-                            </div>*@
+                      
                     </td>
                     <td>@movie.Ganre.Name</td>
+                    <td>
+                        <button data-movie-id="@movie.Id" class="btn-link js-delete" type="button">Delete</button>
+                    </td>
                 </tr>
             }
         </thead>
@@ -53,17 +51,20 @@
 
      $(document).ready(function() {
 
-         @*$("#btnNewMovie").click(
-            function () {
-                $.ajax({
-                    type: "GET",
-                    url: '@Url.Action("NewMovie")',
-                    success: function(data) {
-                        $("#divMoviesEditor").html(data);
-                    }
-                });
-            }
-        );*@
-    });
+         $("#movies .js-delete").on("click",
+             function () {
+                 var button =this;
+                 var id = $(this).attr("data-movie-id");
+                 $.ajax({
+                     url: '@Url.Action("movies","api")?id='+id,
+
+                     method: "DELETE",
+                     success: function () {
+                         button.parentElement.parentElement.remove();
+
+                     }
+                 });
+             });
+     });
 
 </script>

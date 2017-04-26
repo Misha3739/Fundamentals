@@ -1,10 +1,7 @@
-﻿using System;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Linq;
 using System.Web.Http;
 
-namespace Fundamentals.API
+namespace Fundamentals.Controllers.API
 {
     public class MoviesController : BaseController
     {
@@ -16,6 +13,7 @@ namespace Fundamentals.API
             if (movie != null)
             {
                 _dbContext.Movies.Remove(movie);
+                _dbContext.SaveChanges();
                 return Ok();
             }
             else

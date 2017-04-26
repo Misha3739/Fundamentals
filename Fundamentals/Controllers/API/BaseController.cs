@@ -1,7 +1,7 @@
 ﻿using System.Web.Http;
 using Fundamentals.Models.FundamentalsDBContext;
 
-namespace Fundamentals.API
+namespace Fundamentals.Controllers.API
 {
     public class BaseController : ApiController
     {
