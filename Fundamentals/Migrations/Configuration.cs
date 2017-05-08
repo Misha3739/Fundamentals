@@ -1,15 +1,17 @@
+using Fundamentals.Models.DBContext;
+
 namespace Fundamentals.Migrations
 {
     using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Fundamentals.Models.FundamentalsDBContext.FundamentalsDBContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<FundamentalsDBContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Fundamentals.Models.FundamentalsDBContext.FundamentalsDBContext context)
+        protected override void Seed(FundamentalsDBContext context)
         {
             //  This method will be called after migrating to the latest version.
 

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Fundamentals.Models.Validation;
 
-namespace Fundamentals.Models
+namespace Fundamentals.DomainModel
 {
     public class CustomerViewModel 
     {

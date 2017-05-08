@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Fundamentals.Models.Movies
+namespace Fundamentals.DomainModel
 {
     public class File
     {

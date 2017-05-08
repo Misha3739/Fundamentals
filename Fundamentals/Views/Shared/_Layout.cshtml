@@ -22,9 +22,10 @@
                 </button>
                 @Html.ActionLink("Fundamentals", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             
-                    @Html.ActionLink("Customers", "Index", "Customers", new { }, new { @class = "navbar-brand" })
-                    @Html.ActionLink("Movies", "Index", "Movies", new { }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Customers", "Index", "Customers", new { }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Movies", "Index", "Movies", new { }, new { @class = "navbar-brand" })
             </div>
+            @Html.Partial("_LoginPartial")
         </div>
     </div>
     <div class="container body-content">

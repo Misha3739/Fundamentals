@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web.Mvc;
+using Fundamentals.DomainModel;
 using Fundamentals.Models;
-using Fundamentals.Models.FundamentalsDBContext;
+using Fundamentals.Models.DBContext;
 
 namespace Fundamentals.Controllers
 {
+    [Authorize]
     public class CustomersController : Controller
     {
         private readonly FundamentalsDBContext _dbContext;

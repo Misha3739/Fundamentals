@@ -1,5 +1,5 @@
 ﻿using System.Web.Http;
-using Fundamentals.Models.FundamentalsDBContext;
+using Fundamentals.Models.DBContext;
 
 namespace Fundamentals.Controllers.API
 {

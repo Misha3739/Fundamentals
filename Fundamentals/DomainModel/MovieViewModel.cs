@@ -1,10 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Net;
 using Fundamentals.Models.Validation;
 
-namespace Fundamentals.Models.Movies
+namespace Fundamentals.DomainModel
 {
     public class MovieViewModel
     {

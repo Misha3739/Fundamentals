@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using AutoMapper;
+﻿using AutoMapper;
+using Fundamentals.DomainModel;
 using Fundamentals.Models.DTO;
-using Fundamentals.Models.Movies;
 
-namespace Fundamentals.App_Start
+namespace Fundamentals
 {
     public class MappingProfile : Profile
     {

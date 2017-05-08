@@ -5,11 +5,13 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Web.Http;
 using AutoMapper;
+using Fundamentals.DomainModel;
 using Fundamentals.Models.DTO;
 using Fundamentals.Models.Movies;
 
 namespace Fundamentals.Controllers.API
 {
+    [Authorize]
     public class MoviesController : BaseController
     {
         //api/movies

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Fundamentals.DomainModel;
 using Fundamentals.Models.Movies;
 
 namespace Fundamentals.Models.Validation

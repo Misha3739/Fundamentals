@@ -6,13 +6,15 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Fundamentals.DomainModel;
 using Fundamentals.Models;
-using Fundamentals.Models.FundamentalsDBContext;
+using Fundamentals.Models.DBContext;
 using Fundamentals.Models.Movies;
-using File = Fundamentals.Models.Movies.File;
+using File = Fundamentals.DomainModel.File;
 
 namespace Fundamentals.Controllers
 {
+    [Authorize]
     public class MoviesController : Controller
     {
         private readonly FundamentalsDBContext _dbContext;

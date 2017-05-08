@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Fundamentals.DomainModel;
 using Fundamentals.Models;
 
 namespace Fundamentals.Controllers.API
