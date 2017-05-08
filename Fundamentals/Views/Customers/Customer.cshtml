@@ -9,7 +9,7 @@
 
 
 
-@using (Html.BeginForm("SaveCustomer","Customers",FormMethod.Post,new{ customer = Model}))
+@using (Html.BeginForm("Save","Customers",FormMethod.Post,new{ customer = Model}))
 {
     
     @Html.AntiForgeryToken()

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Fundamentals.Models.CustomerViewModel>
+﻿
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,43 +12,97 @@
 </style>
 <div id="divCreateNew">
     <h2>Customers</h2>
-    @if (Model.Any())
-    {
-        <ul>
+    
+        @*<ul>
             @foreach (var customer in Model)
             {
                 <li>
-                    @Html.ActionLink(customer.FirstName + " " + customer.LastName, "GetCustomer", new {  id = customer.Id},new{ @class = "href-class"})
+                    @Html.ActionLink(customer.FirstName + " " + customer.LastName, "Edit", new {  id = customer.Id},new{ @class = "href-class"})
 
                 </li>
             }
-        </ul>
-    }
-    else
-    {
-        <p>We have no customers yet</p>
-    }
+        </ul>*@
+        <table id="customers" class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>
+                    FirstName
+                </th>
+                <th>
+                    LastName
+                </th>
+                <th>
+                    BirthDate
+                </th>
+                <th>
+                    Edit
+                </th>
+                <th>
+                    Delete
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            
+            </tbody>
 
-    @using (Html.BeginForm("CreateCustomer","Customers", FormMethod.Get))
+        </table>
+   
+
+    @using (Html.BeginForm("Create","Customers", FormMethod.Get))
     {
         <button type="submit" class="form-control" style="width: 170px" id="createBtn">Create</button>
     }
 </div>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
 
-        @*$("#createBtn").click(
-            function () {
-                $.ajax({
-                    type: "GET",
-                    url: '@Url.Action("CreateCustomer")',
-                    success: function(data) {
-                        $("#divCreateNew").html(data);
+        var table = $("#customers").DataTable({
+            ajax: {
+                url: '@Url.Action("Customers","api")',
+               method: "GET",
+               dataSrc:""
+            },
+            columns: [{
+                data: "FirstName"
+
+                },
+                {
+                    data: "LastName"
+                },
+                {
+                    data: "BirthDate"
+                },
+                {
+                    render: function (data, type, customer) {
+                        return "<a href='/customers/Edit/" + customer.Id + "'>Edit</a>";
                     }
-                });
-            }
-        );*@
+                },
+                    {
+                    data: "Id",
+                    render: function (data) {
+                        return "<button class=\"btn-link js-delete\" data-customer-id="+data+">Delete</button>";
+                         }
+                    }
+                ]
+    });
+
+
+        $("#customers").on("click",".js-delete",
+             function () {
+                 var button =$(this);
+                 var id = button.attr("data-customer-id");
+                 $.ajax({
+                     url: '@Url.Action("customers","api")?id='+id,
+
+                     method: "DELETE",
+                     success: function () {
+                         table.row(button.parents("tr")).remove().draw();
+
+                     }
+                 });
+             });
     });
 
 </script>

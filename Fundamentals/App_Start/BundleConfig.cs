@@ -9,7 +9,12 @@ namespace Fundamentals
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/bundles/jqueryui",
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/bootstrap.js",
+                       "~/Scripts/bootstrap-datepicker.js",
+                         "~/Scripts/respond.js",
+                         "~/Scripts/Datatables/jquery.datatables.js",
+                         "~/Scripts/Datatables/datatables.bootstrap.js"));
 
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
@@ -26,13 +31,15 @@ namespace Fundamentals
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                        "~/Scripts/bootstrap-datepicker.js",
-                      "~/Scripts/respond.js"));
+                         "~/Scripts/respond.js"
+                      ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                          "~/Content/bootstrap-datepicker.css",
                         "~/Content/bootstrap.solar.css",
-                      "~/Content/Site.css"));
+                      "~/Content/Site.css",
+                      "~/Content/datatables/css/datatables.bootstrap.css"));
 
   
         }

@@ -19,18 +19,18 @@ namespace Fundamentals.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            var customers = _dbContext.Customers.ToList();
-            return View(customers);
+          
+            return View();
         }
 
-        public ActionResult CreateCustomer()
+        public ActionResult Create()
         {
          
             return View("Customer", new CustomerViewModel());
         }
 
 
-        public ActionResult GetCustomer(int id)
+        public ActionResult Edit(int id)
         {
             var customers = _dbContext.Customers.ToList();
             var selected = customers.SingleOrDefault(x => x.Id == id);
@@ -41,7 +41,7 @@ namespace Fundamentals.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SaveCustomer(CustomerViewModel customer)
+        public ActionResult Save(CustomerViewModel customer)
         {
             if(!ModelState.IsValid)
                 return View("Customer", customer);
@@ -58,6 +58,7 @@ namespace Fundamentals.Controllers
             return RedirectToAction("Index");
         }
 
+        [Obsolete()]
         private List<CustomerViewModel> GetCustomersList()
         {
             return new List<CustomerViewModel>()

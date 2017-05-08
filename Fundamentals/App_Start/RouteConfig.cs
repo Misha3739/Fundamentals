@@ -12,7 +12,7 @@ namespace Fundamentals
             routes.MapRoute(
                  "Customers",
                  "{controller}/{action}/{id}",
-                 new { controller = "Customers", action = "GetCustomer"},
+                 new { controller = "Customers", action = "Edit"},
                  new { id = @"\d"}
            );
 
