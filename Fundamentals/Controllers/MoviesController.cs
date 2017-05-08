@@ -28,7 +28,7 @@ namespace Fundamentals.Controllers
             return View(movies);
         }
 
-        public ActionResult NewMovie()
+        public ActionResult New()
         {
             EditMovieViewModel model = new EditMovieViewModel()
             {
@@ -36,10 +36,10 @@ namespace Fundamentals.Controllers
                 Ganres = _dbContext.Ganres.ToList()
             };
             model.Movie.GanreId = model.Ganres.FirstOrDefault()?.Id ?? 0;
-            return View("GetMovie", model);
+            return View("Edit", model);
         }
 
-        public ActionResult GetMovie(int id)
+        public ActionResult Edit(int id)
         {
             var movie = _dbContext.Movies.SingleOrDefault(x => x.Id == id);
             if(movie == null)
@@ -49,7 +49,7 @@ namespace Fundamentals.Controllers
                 Movie = movie,
                 Ganres = _dbContext.Ganres.ToList()
             };
-            return View("GetMovie", model);
+            return View("Edit", model);
         }
 
 
@@ -72,7 +72,7 @@ namespace Fundamentals.Controllers
             if (!ModelState.IsValid)
             {
                 model.Ganres = _dbContext.Ganres.ToList();
-                return View("GetMovie", model);
+                return View("Edit", model);
             }
             if (upload != null && upload.ContentLength > 0)
             {
@@ -101,7 +101,7 @@ namespace Fundamentals.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult PlayMovie(int id)
+        public ActionResult Play(int id)
         {
             var movie = _dbContext.Movies.SingleOrDefault(x => x.Id == id);
             var file = _dbContext.Files.FirstOrDefault(x => x.Id == movie.FileId);

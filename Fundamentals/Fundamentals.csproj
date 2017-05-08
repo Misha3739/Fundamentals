@@ -46,6 +46,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -154,6 +157,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\MappingProfile.cs" />
     <Compile Include="Controllers\API\BaseController.cs" />
     <Compile Include="Controllers\API\CustomersController.cs" />
     <Compile Include="Controllers\API\MoviesController.cs" />
@@ -221,6 +225,8 @@
     <Compile Include="Models\Authorization\UserViewModel.cs" />
     <Compile Include="DomainModel\CustomerViewModel.cs" />
     <Compile Include="Models\DBContext\FundamentalsDBContext.cs" />
+    <Compile Include="Models\DTO\GanreDTO.cs" />
+    <Compile Include="Models\DTO\MovieDTO.cs" />
     <Compile Include="Models\Movies\EditMovieViewModel.cs" />
     <Compile Include="DomainModel\File.cs" />
     <Compile Include="DomainModel\Ganres.cs" />
@@ -361,7 +367,7 @@
     <Content Include="Views\Customers\Customer.cshtml" />
     <Content Include="Views\Customers\CustomerNotFound.cshtml" />
     <Content Include="Views\Movies\Index.cshtml" />
-    <Content Include="Views\Movies\GetMovie.cshtml" />
+    <Content Include="Views\Movies\Edit.cshtml" />
     <Content Include="Views\Movies\MovieNotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>

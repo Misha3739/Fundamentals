@@ -2,6 +2,8 @@
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using AutoMapper;
+using Fundamentals.App_Start;
 
 namespace Fundamentals
 {
@@ -9,6 +11,7 @@ namespace Fundamentals
     {
         protected void Application_Start()
         {
+            Mapper.Initialize(x=>x.AddProfile<MappingProfile>());
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

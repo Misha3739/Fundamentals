@@ -1,11 +1,19 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Web.Http;
+using AutoMapper;
+using Fundamentals.Models.DTO;
+using Fundamentals.Models.Movies;
 
 namespace Fundamentals.Controllers.API
 {
     public class MoviesController : BaseController
     {
         //api/movies
+        //DELETE
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
@@ -16,10 +24,17 @@ namespace Fundamentals.Controllers.API
                 _dbContext.SaveChanges();
                 return Ok();
             }
-            else
-            {
-                return BadRequest($"Movie with id {id} does not exist");
-            }
+            return BadRequest($"Movie with id {id} does not exist");
+        }
+
+        //api/movies
+        //GET
+        [HttpGet]
+        public IEnumerable<MovieDTO> Get()
+        {
+            return _dbContext.Movies.Include(x=>x.Ganre)
+                .Select(
+                Mapper.Map<MovieViewModel,MovieDTO>);
         }
     }
 }

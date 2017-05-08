@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Fundamentals.Models.Movies.MovieViewModel>
+﻿
 @{
 
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -18,19 +18,28 @@
                     Name
                 </th>
                 <th>
-                    Play
+                    Release Date
                 </th>
                 <th>
                     Ganre
                 </th>
+                <th>
+                    Play
+                </th>
+                <th>
+                    Edit
+                </th>
+                <th>
+                    Delete
+                </th>
             </tr>
-            @foreach (var movie in Model)
+            @*@foreach (var movie in Model)
             {
                 <tr>
 
-                    <td>@Html.ActionLink(movie.Name, "GetMovie", new { id = movie.Id }, new { @class = "href-class" })</td>
+                    <td>@Html.ActionLink(movie.Name, "Edit", new { id = movie.Id }, new { @class = "href-class" })</td>
                     <td>
-                        <audio controls="" src="@Url.Action("PlayMovie", new { id = movie.Id })" id="player_'@movie.Id'"></audio>
+                        <audio controls="" src="@Url.Action("Play", new { id = movie.Id })" id="player_'@movie.Id'"></audio>
                       
                     </td>
                     <td>@movie.Ganre.Name</td>
@@ -38,10 +47,10 @@
                         <button data-movie-id="@movie.Id" class="btn-link js-delete" type="button">Delete</button>
                     </td>
                 </tr>
-            }
+            }*@
         </thead>
     </table>
-    @using (Html.BeginForm("NewMovie", "Movies", FormMethod.Get))
+    @using (Html.BeginForm("New", "Movies", FormMethod.Get))
     {
         <input type="submit" class="btn btn-default" value="New movie" id="btnNewMovie"/>
     }
@@ -50,21 +59,60 @@
 <script>
 
      $(document).ready(function() {
+         $("#movies").DataTable({
+             ajax: {
+                url: '@Url.Action("Movies","api")',
+               method: "GET",
+               dataSrc:""
+             },
+             columns:[
+             {
+                     data: "Name"
+             },
 
-         $("#movies .js-delete").on("click",
+             {
+                 data: "ReleaseDate"
+             },
+             {
+                 data: "Ganre.Name"
+             },
+                 {
+                     data: "Id",
+                     render: function (data) {
+                         return "<audio controls=\"\" src='/Movies/Play/"+data+"'></audio>";
+                     }
+                 },
+                 {
+                     data: "Id",
+                     render: function (data) {
+                         return "<a href='/customers/Edit/" +data + "'>Edit</a>";
+                     }
+                 },
+                 {
+                     data: "Id",
+                     render:function(data) {
+                         return "<button class=\"btn-link js-delete\" data-movie-id=" + data + ">Delete</button>";
+                     }
+                 }
+
+             ]
+         });
+
+
+         $("#movies").on("click",".js-delete",
              function () {
-                 var button =this;
-                 var id = $(this).attr("data-movie-id");
+                 var button =$(this);
+                 var id = button.attr("data-movie-id");
                  $.ajax({
-                     url: '@Url.Action("movies","api")?id='+id,
+                     url: '@Url.Action("movies","api")?id=' + id,
 
                      method: "DELETE",
                      success: function () {
-                         button.parentElement.parentElement.remove();
+                         table.row(button.parents("tr")).remove().draw();
 
                      }
                  });
              });
-     });
+    });
 
 </script>
