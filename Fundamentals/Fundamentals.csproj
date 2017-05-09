@@ -195,6 +195,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Constants.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -253,6 +254,14 @@
     <Compile Include="Migrations\201705082059207_IdentityUsers.cs" />
     <Compile Include="Migrations\201705082059207_IdentityUsers.Designer.cs">
       <DependentUpon>201705082059207_IdentityUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705090956341_SeedRoles.cs" />
+    <Compile Include="Migrations\201705090956341_SeedRoles.Designer.cs">
+      <DependentUpon>201705090956341_SeedRoles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705091015590_SeedRoles1.cs" />
+    <Compile Include="Migrations\201705091015590_SeedRoles1.Designer.cs">
+      <DependentUpon>201705091015590_SeedRoles1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Authorization\AccountViewModels.cs" />
@@ -425,6 +434,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Movies\IndexReadOnly.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -481,6 +491,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705082059207_IdentityUsers.resx">
       <DependentUpon>201705082059207_IdentityUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705090956341_SeedRoles.resx">
+      <DependentUpon>201705090956341_SeedRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705091015590_SeedRoles1.resx">
+      <DependentUpon>201705091015590_SeedRoles1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -3,7 +3,9 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Fundamentals.Models.Authorization;
+using Fundamentals.Models.DBContext;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 
@@ -12,6 +14,9 @@ namespace Fundamentals.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+  
+
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -152,8 +157,16 @@ namespace Fundamentals.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    var roleStore = new RoleStore<IdentityRole>(new FundamentalsDBContext());
+                    var roleManager = new RoleManager<IdentityRole>(roleStore);
+
+
+                    await roleManager.CreateAsync(new IdentityRole(Roles.CanEditMoviesRole));
+
+                    UserManager.AddToRole(user.Id, Roles.CanEditMoviesRole);
+
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

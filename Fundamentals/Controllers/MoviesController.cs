@@ -14,7 +14,7 @@ using File = Fundamentals.DomainModel.File;
 
 namespace Fundamentals.Controllers
 {
-    [Authorize]
+
     public class MoviesController : Controller
     {
         private readonly FundamentalsDBContext _dbContext;
@@ -23,13 +23,15 @@ namespace Fundamentals.Controllers
         {
             _dbContext = new FundamentalsDBContext();
         }
-        // GET: Videos
+
         public ActionResult Index()
         {
-            var movies = _dbContext.Movies.Include(x=>x.Ganre).ToList();
-            return View(movies);
+            if(User.Identity.IsAuthenticated && User.IsInRole(Roles.CanEditMoviesRole))
+                return View();
+            return View("IndexReadOnly");
         }
 
+        [Authorize(Roles = Roles.CanEditMoviesRole)]
         public ActionResult New()
         {
             EditMovieViewModel model = new EditMovieViewModel()
@@ -41,6 +43,7 @@ namespace Fundamentals.Controllers
             return View("Edit", model);
         }
 
+        [Authorize(Roles = Roles.CanEditMoviesRole)]
         public ActionResult Edit(int id)
         {
             var movie = _dbContext.Movies.SingleOrDefault(x => x.Id == id);
@@ -57,6 +60,7 @@ namespace Fundamentals.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = Roles.CanEditMoviesRole)]
         public ActionResult Delete(int id)
         {
             var movie = _dbContext.Movies.SingleOrDefault(x => x.Id == id);
@@ -68,6 +72,7 @@ namespace Fundamentals.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = Roles.CanEditMoviesRole)]
         [ValidateAntiForgeryToken]
         public ActionResult Save(EditMovieViewModel model, HttpPostedFileBase upload)
         {

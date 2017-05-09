@@ -1,0 +1,71 @@
+﻿
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Movies</h2>
+
+
+<div id="divMoviesEditor">
+    
+
+
+    <table class="table" id="movies">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Release Date
+                </th>
+                <th>
+                    Ganre
+                </th>
+                <th>
+                    Play
+                </th>
+               
+            </tr>
+         
+        </thead>
+    </table>
+   
+</div>
+<script>
+
+     $(document).ready(function() {
+         $("#movies").DataTable({
+             ajax: {
+                url: '@Url.Action("Movies","api")',
+               method: "GET",
+               dataSrc:""
+             },
+             columns:[
+             {
+                     data: "Name"
+             },
+
+             {
+                 data: "ReleaseDate"
+             },
+             {
+                 data: "Ganre.Name"
+             },
+                 {
+                     data: "Id",
+                     render: function (data) {
+                         return "<audio controls=\"\" src='/Movies/Play/"+data+"'></audio>";
+                     }
+                 }
+               
+
+             ]
+         });
+
+
+     
+    });
+
+</script>

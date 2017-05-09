@@ -11,7 +11,7 @@ using Fundamentals.Models.Movies;
 
 namespace Fundamentals.Controllers.API
 {
-    [Authorize]
+
     public class MoviesController : BaseController
     {
         //api/movies
