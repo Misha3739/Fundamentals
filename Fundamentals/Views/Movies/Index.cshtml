@@ -44,8 +44,7 @@
 </div>
 <script>
 
-     $(document).ready(function() {
-         $("#movies").DataTable({
+    var table = $("#movies").DataTable({
              ajax: {
                 url: '@Url.Action("Movies","api")',
                method: "GET",
@@ -71,7 +70,7 @@
                  {
                      data: "Id",
                      render: function (data) {
-                         return "<a href='/customers/Edit/" +data + "'>Edit</a>";
+                         return "<a href='/Movies/Edit/" +data + "'>Edit</a>";
                      }
                  },
                  {
@@ -100,5 +99,6 @@
                  });
              });
     });
+
 
 </script>
