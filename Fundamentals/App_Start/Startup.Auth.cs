@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Web;
 using Fundamentals.Models.Authorization;
 using Fundamentals.Models.DBContext;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.OAuth;
 using Owin;
 
 namespace Fundamentals
@@ -34,20 +32,9 @@ namespace Fundamentals
                     // This is a security feature which is used when you change a password or add an external login to your account.  
                     OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
                         validateInterval: TimeSpan.FromMinutes(30),
-                        regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager)),
-                 
-                        OnApplyRedirect = ctx =>
-                        {
-                            if (!IsApiRequest(ctx.Request))
-                            {
-                                ctx.Response.Redirect(ctx.RedirectUri);
-                            }
-                        }
-                    }
-                
-            });
-
-
+                        regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
+                }
+            });            
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.
@@ -76,32 +63,6 @@ namespace Fundamentals
             //    ClientId = "",
             //    ClientSecret = ""
             //});
-
-
-            //var PublicClientId = "self";
-            //var OAuthOptions = new OAuthAuthorizationServerOptions
-            //{
-            //    TokenEndpointPath = new PathString("/Token"),
-            //    Provider = new ApplicationOAuthProvider(PublicClientId),
-            //    AuthorizeEndpointPath = new PathString("/Account/ExternalLogin"),
-            //    AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
-            //    // Note: Remove the following line before you deploy to production:
-            //    AllowInsecureHttp = true
-            //};
-
-            //// Enable the application to use bearer tokens to authenticate users
-            //app.UseOAuthBearerTokens(OAuthOptions);
-        }
-
-   
-          
-        
-
-
-        private static bool IsApiRequest(IOwinRequest request)
-        {
-            string apiPath = VirtualPathUtility.ToAbsolute("~/api/");
-            return request.Uri.LocalPath.StartsWith(apiPath);
         }
     }
 }
