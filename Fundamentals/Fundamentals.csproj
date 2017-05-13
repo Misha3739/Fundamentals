@@ -184,6 +184,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201705131725029_SeedAdminRoles.cs" />
+    <Compile Include="Migrations\201705131725029_SeedAdminRoles.Designer.cs">
+      <DependentUpon>201705131725029_SeedAdminRoles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utility\FundamentalsPasswordHasher.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\MappingProfile.cs" />
@@ -507,6 +511,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705130916322_RegisterViewModelUpdated.resx">
       <DependentUpon>201705130916322_RegisterViewModelUpdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705131725029_SeedAdminRoles.resx">
+      <DependentUpon>201705131725029_SeedAdminRoles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
