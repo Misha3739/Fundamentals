@@ -20,8 +20,9 @@ namespace Fundamentals.Controllers
        
         public ActionResult Index()
         {
-          
-            return View();
+            if (User.Identity.IsAuthenticated && User.IsInRole(Roles.CanEditCustomersRole))
+                return View();
+            return View("IndexReadOnly");
         }
         [Authorize]
         public ActionResult Create()

@@ -6,22 +6,13 @@
 <style>
     .href-class {
         font-size: x-large;
-        /*font-weigth: bold;*/
     }
      
 </style>
 <div id="divCreateNew">
     <h2>Customers</h2>
     
-        @*<ul>
-            @foreach (var customer in Model)
-            {
-                <li>
-                    @Html.ActionLink(customer.FirstName + " " + customer.LastName, "Edit", new {  id = customer.Id},new{ @class = "href-class"})
 
-                </li>
-            }
-        </ul>*@
         <table id="customers" class="table table-bordered table-hover">
             <thead>
             <tr>
