@@ -14,7 +14,7 @@ using File = Fundamentals.DomainModel.File;
 
 namespace Fundamentals.Controllers
 {
-
+    [AllowAnonymous]
     public class MoviesController : Controller
     {
         private readonly FundamentalsDBContext _dbContext;

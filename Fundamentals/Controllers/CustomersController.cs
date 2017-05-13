@@ -9,7 +9,7 @@ using Fundamentals.Models.DBContext;
 
 namespace Fundamentals.Controllers
 {
-    [Authorize]
+   [AllowAnonymous]
     public class CustomersController : Controller
     {
         private readonly FundamentalsDBContext _dbContext;
@@ -19,19 +19,19 @@ namespace Fundamentals.Controllers
             _dbContext= new FundamentalsDBContext();
         }
         // GET: Customers
+       
         public ActionResult Index()
         {
           
             return View();
         }
-
+        [Authorize]
         public ActionResult Create()
         {
          
             return View("Customer", new CustomerViewModel());
         }
-
-
+        [Authorize]
         public ActionResult Edit(int id)
         {
             var customers = _dbContext.Customers.ToList();
@@ -43,6 +43,7 @@ namespace Fundamentals.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Save(CustomerViewModel customer)
         {
             if(!ModelState.IsValid)
@@ -60,27 +61,7 @@ namespace Fundamentals.Controllers
             return RedirectToAction("Index");
         }
 
-        [Obsolete()]
-        private List<CustomerViewModel> GetCustomersList()
-        {
-            return new List<CustomerViewModel>()
-            {
-                new CustomerViewModel()
-                {
-                    Id = 1,
-                    FirstName = "Udot",
-                    LastName = "Mihail",
-                    BirthDate = new DateTime(1991,01,02)
-                },
-                new CustomerViewModel()
-                {
-                    Id=2,
-                     FirstName = "Kotskaya",
-                    LastName = "Anastasya",
-                    BirthDate = new DateTime(1993, 01, 21)
-                }
-            };
-        }
+    
 
         protected override void Dispose(bool disposing)
         {

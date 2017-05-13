@@ -9,17 +9,20 @@ using Fundamentals.Models;
 
 namespace Fundamentals.Controllers.API
 {
+    [Authorize]
     public class CustomersController : BaseController
     {
 
 
         // GET: api/Customers
+        [AllowAnonymous]
         public IQueryable<CustomerViewModel> GetCustomers()
         {
             return _dbContext.Customers;
         }
 
         // GET: api/Customers/5
+        [AllowAnonymous]
         [ResponseType(typeof(CustomerViewModel))]
         public IHttpActionResult GetCustomerViewModel(int id)
         {
@@ -33,6 +36,7 @@ namespace Fundamentals.Controllers.API
         }
 
         // PUT: api/Customers/5
+
         [ResponseType(typeof(void))]
         public IHttpActionResult PutCustomerViewModel(int id, CustomerViewModel customerViewModel)
         {

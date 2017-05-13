@@ -11,7 +11,7 @@ using Fundamentals.Models.Movies;
 
 namespace Fundamentals.Controllers.API
 {
-
+    [Authorize]
     public class MoviesController : BaseController
     {
         //api/movies
@@ -32,6 +32,7 @@ namespace Fundamentals.Controllers.API
         //api/movies
         //GET
         [HttpGet]
+        [AllowAnonymous]
         public IEnumerable<MovieDTO> Get()
         {
             return _dbContext.Movies.Include(x=>x.Ganre)

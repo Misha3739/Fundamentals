@@ -184,9 +184,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Utility\FundamentalsPasswordHasher.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\MappingProfile.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Utility\BasicAuthHttpModule.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\API\BaseController.cs" />
     <Compile Include="Controllers\API\CustomersController.cs" />

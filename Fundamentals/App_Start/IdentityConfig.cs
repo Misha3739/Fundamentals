@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Fundamentals.Models.Authorization;
 using Fundamentals.Models.DBContext;
+using Fundamentals.Utility;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
+using WebGrease.Css.Extensions;
 
 namespace Fundamentals
 {
@@ -39,7 +42,11 @@ namespace Fundamentals
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
         {
-            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<FundamentalsDBContext>()));
+            var manager =
+                new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<FundamentalsDBContext>()))
+                {
+                    PasswordHasher = new FundamentalsPasswordHasher()
+                };
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {
