@@ -263,6 +263,10 @@
     <Compile Include="Migrations\201705091015590_SeedRoles1.Designer.cs">
       <DependentUpon>201705091015590_SeedRoles1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705130916322_RegisterViewModelUpdated.cs" />
+    <Compile Include="Migrations\201705130916322_RegisterViewModelUpdated.Designer.cs">
+      <DependentUpon>201705130916322_RegisterViewModelUpdated.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Authorization\AccountViewModels.cs" />
     <Compile Include="Models\Authorization\IdentityModels.cs" />
@@ -497,6 +501,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705091015590_SeedRoles1.resx">
       <DependentUpon>201705091015590_SeedRoles1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705130916322_RegisterViewModelUpdated.resx">
+      <DependentUpon>201705130916322_RegisterViewModelUpdated.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
