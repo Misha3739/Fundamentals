@@ -184,9 +184,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201705131725029_SeedAdminRoles.cs" />
-    <Compile Include="Migrations\201705131725029_SeedAdminRoles.Designer.cs">
-      <DependentUpon>201705131725029_SeedAdminRoles.cs</DependentUpon>
+    <Compile Include="Migrations\201705131752170_SeedAdminRoles1.cs" />
+    <Compile Include="Migrations\201705131752170_SeedAdminRoles1.Designer.cs">
+      <DependentUpon>201705131752170_SeedAdminRoles1.cs</DependentUpon>
     </Compile>
     <Compile Include="Utility\FundamentalsPasswordHasher.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -264,10 +264,6 @@
     <Compile Include="Migrations\201705090956341_SeedRoles.cs" />
     <Compile Include="Migrations\201705090956341_SeedRoles.Designer.cs">
       <DependentUpon>201705090956341_SeedRoles.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705091015590_SeedRoles1.cs" />
-    <Compile Include="Migrations\201705091015590_SeedRoles1.Designer.cs">
-      <DependentUpon>201705091015590_SeedRoles1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201705130916322_RegisterViewModelUpdated.cs" />
     <Compile Include="Migrations\201705130916322_RegisterViewModelUpdated.Designer.cs">
@@ -506,14 +502,11 @@
     <EmbeddedResource Include="Migrations\201705090956341_SeedRoles.resx">
       <DependentUpon>201705090956341_SeedRoles.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705091015590_SeedRoles1.resx">
-      <DependentUpon>201705091015590_SeedRoles1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705130916322_RegisterViewModelUpdated.resx">
       <DependentUpon>201705130916322_RegisterViewModelUpdated.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705131725029_SeedAdminRoles.resx">
-      <DependentUpon>201705131725029_SeedAdminRoles.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705131752170_SeedAdminRoles1.resx">
+      <DependentUpon>201705131752170_SeedAdminRoles1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
