@@ -9,5 +9,7 @@
         public const string AdminRole = "Admin";
 
         public const string SuperAdminRole = "SuperAdmin";
+
+        public const string DefaultRole = "Default";
     }
 }

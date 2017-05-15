@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -30,6 +31,15 @@ namespace Fundamentals.Models.Authorization
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime BirthDate { get; set; }
+
+        [Required]
+        [StringLength(128)]
+        public string ClaimedRoleId { get; set; }
+
+        [DefaultValue(0)]
+        public bool RoleApproved { get; set; }
+
+       
     }
 
 

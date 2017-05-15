@@ -31,6 +31,14 @@
     </div>
 
     <div class="form-group">
+        @Html.LabelFor(model => model.ClaimedRoleId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.ClaimedRoleId, new SelectList(Model.AvailableRoles, "Id", "Name", ""), new { htmlAttributes = new { @class = "dropdown form-control" } })
+            @Html.ValidationMessageFor(model => model.ClaimedRoleId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
         @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })

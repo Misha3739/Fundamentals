@@ -186,6 +186,10 @@
   <ItemGroup>
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Migrations\201705151021178_ClaimRoleOnRegister.cs" />
+    <Compile Include="Migrations\201705151021178_ClaimRoleOnRegister.Designer.cs">
+      <DependentUpon>201705151021178_ClaimRoleOnRegister.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utility\ControllerHelper.cs" />
     <Compile Include="Utility\FuntamentalsAuthorizeAttribute.cs" />
     <Compile Include="Migrations\201705150836280_SeedAdminRoles.cs" />
@@ -512,6 +516,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705150836280_SeedAdminRoles.resx">
       <DependentUpon>201705150836280_SeedAdminRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705151021178_ClaimRoleOnRegister.resx">
+      <DependentUpon>201705151021178_ClaimRoleOnRegister.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -10,7 +10,12 @@ namespace Fundamentals.Models.DBContext
     {
         private static readonly string _connectionString;
 
-      
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            Database.SetInitializer<FundamentalsDBContext>(null);
+            base.OnModelCreating(modelBuilder);
+        }
+
         public static FundamentalsDBContext Create()
         {
             return new FundamentalsDBContext();
@@ -25,6 +30,7 @@ namespace Fundamentals.Models.DBContext
             base(_connectionString)
         {
             Database.SetInitializer(new CreateDatabaseIfNotExists<FundamentalsDBContext>());
+
         }
 
 

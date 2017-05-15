@@ -8,13 +8,7 @@ namespace Fundamentals.Controllers
     {
         protected readonly FundamentalsDBContext _dbContext;
 
-        protected virtual string[] AvailableRoles
-        {
-            get
-            {
-                throw new NotImplementedException("Base controller is not a functional controller");
-            }
-        }
+        protected virtual string[] AvailableRoles { get; }
 
         public BaseController()
         {

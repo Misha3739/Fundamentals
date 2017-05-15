@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Data.Entity;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -13,10 +15,8 @@ using Microsoft.Owin.Security;
 namespace Fundamentals.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
-  
-
 
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
@@ -142,7 +142,12 @@ namespace Fundamentals.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            
+            RegisterViewModel model = new RegisterViewModel()
+            {
+                AvailableRoles = _dbContext.Roles.ToList()
+            };
+            return View(model);
         }
 
         //
@@ -160,7 +165,8 @@ namespace Fundamentals.Controllers
                     Email = model.Email,
                     BirthDate = model.BirthDate,
                     FirstName = model.FirstName,
-                    LastName = model.LastName
+                    LastName = model.LastName,
+                    ClaimedRoleId = model.ClaimedRoleId
 
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
@@ -169,10 +175,12 @@ namespace Fundamentals.Controllers
                     var roleStore = new RoleStore<IdentityRole>(new FundamentalsDBContext());
                     var roleManager = new RoleManager<IdentityRole>(roleStore);
 
-
+                    
                     await roleManager.CreateAsync(new IdentityRole(Roles.CanEditMoviesRole));
 
-                    UserManager.AddToRole(user.Id, Roles.CanEditMoviesRole);
+                    UserManager.AddToRole(user.Id, Roles.DefaultRole);
+
+
 
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 

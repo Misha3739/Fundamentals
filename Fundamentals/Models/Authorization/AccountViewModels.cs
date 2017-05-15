@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Fundamentals.Models.Authorization
 {
@@ -93,6 +94,14 @@ namespace Fundamentals.Models.Authorization
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime BirthDate { get; set; }
+
+        [Required]
+        [StringLength(128)]
+        [Display(Description = "Desired Role")]
+        public string ClaimedRoleId { get; set; }
+
+        public List<IdentityRole> AvailableRoles { get; set; }
+       
     }
 
     public class ResetPasswordViewModel
