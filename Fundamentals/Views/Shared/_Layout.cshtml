@@ -24,6 +24,10 @@
             
                 @Html.ActionLink("Customers", "Index", "Customers", new { }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Movies", "Index", "Movies", new { }, new { @class = "navbar-brand" })
+                @if (User.Identity.IsAuthenticated && User.IsInRole(Fundamentals.Utility.Roles.SuperAdminRole))
+                {
+                    @Html.ActionLink("Admin", "Index", "Admin", new { }, new { @class = "navbar-brand" })
+                }
             </div>
             @Html.Partial("_LoginPartial")
         </div>

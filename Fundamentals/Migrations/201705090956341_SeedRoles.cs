@@ -1,4 +1,5 @@
 using Fundamentals.Controllers;
+using Fundamentals.Utility;
 
 namespace Fundamentals.Migrations
 {

@@ -1,15 +1,18 @@
 using Fundamentals.Controllers;
+using Fundamentals.Utility;
 
 namespace Fundamentals.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
-    
-    public partial class SeedAdminRoles1 : DbMigration
+
+    public partial class SeedAdminRoles : DbMigration
     {
         public override void Up()
         {
             var superAdminRoleId = Guid.NewGuid();
+
+            var userName = "mihail.udot@yandex.ru";
 
             Sql($"INSERT INTO [dbo].[AspNetRoles] ([Id],[Name]) VALUES('{Guid.NewGuid()}','{Roles.AdminRole}')");
 
@@ -33,16 +36,16 @@ namespace Fundamentals.Migrations
            ,[BirthDate])
 VALUES
 ('{userId}',
-'mihail.udot@tandex.ru',
+'userName',
 1,
-'Ji~kmbm=>L',
+'{new FundamentalsPasswordHasher().HashPassword("Fergana12@")}',
 '{Guid.NewGuid()}',
 '89213050242',
 1,
 0,
 0,
 5,
-'mihail.udot@tandex.ru',
+'{userName}',
 'Mihail',
 'Udot',
  '1991-01-02')");
@@ -54,7 +57,7 @@ VALUES
            ('{userId}','{superAdminRoleId}')
 GO");
         }
-        
+
         public override void Down()
         {
         }

@@ -10,6 +10,7 @@ using Fundamentals.DomainModel;
 using Fundamentals.Models;
 using Fundamentals.Models.DBContext;
 using Fundamentals.Models.Movies;
+using Fundamentals.Utility;
 using File = Fundamentals.DomainModel.File;
 
 namespace Fundamentals.Controllers

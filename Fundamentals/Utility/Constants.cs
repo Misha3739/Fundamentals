@@ -1,4 +1,4 @@
-﻿namespace Fundamentals.Controllers
+﻿namespace Fundamentals.Utility
 {
     public static class Roles
     {

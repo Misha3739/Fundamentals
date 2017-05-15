@@ -4,6 +4,7 @@ using System.Web;
 using System.Web.Mvc;
 using Fundamentals.Models.Authorization;
 using Fundamentals.Models.DBContext;
+using Fundamentals.Utility;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;

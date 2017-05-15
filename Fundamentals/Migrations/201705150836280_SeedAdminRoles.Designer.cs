@@ -7,13 +7,13 @@ namespace Fundamentals.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class SeedAdminRoles1 : IMigrationMetadata
+    public sealed partial class SeedAdminRoles : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(SeedAdminRoles1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(SeedAdminRoles));
         
         string IMigrationMetadata.Id
         {
-            get { return "201705131752170_SeedAdminRoles1"; }
+            get { return "201705150836280_SeedAdminRoles"; }
         }
         
         string IMigrationMetadata.Source
