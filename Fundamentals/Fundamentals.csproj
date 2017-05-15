@@ -185,6 +185,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Utility\ControllerHelper.cs" />
+    <Compile Include="Utility\FuntamentalsAuthorizeAttribute.cs" />
     <Compile Include="Migrations\201705150836280_SeedAdminRoles.cs" />
     <Compile Include="Migrations\201705150836280_SeedAdminRoles.Designer.cs">
       <DependentUpon>201705150836280_SeedAdminRoles.cs</DependentUpon>
@@ -443,11 +446,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Movies\IndexReadOnly.cshtml" />
     <Content Include="Views\Customers\IndexReadOnly.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\Customers\" />
-    <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

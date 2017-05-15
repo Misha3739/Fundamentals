@@ -3,35 +3,33 @@ using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web.Mvc;
 using Fundamentals.DomainModel;
-using Fundamentals.Models.DBContext;
 using Fundamentals.Utility;
 
 namespace Fundamentals.Controllers
 {
-   [AllowAnonymous]
-    public class CustomersController : Controller
+    [AllowAnonymous]
+    public class CustomersController : BaseController
     {
-        private readonly FundamentalsDBContext _dbContext;
+        
+       protected override string[] AvailableRoles => new [] {Roles.SuperAdminRole, Roles.AdminRole, Roles.CanEditCustomersRole};
 
-        public CustomersController()
-        {
-            _dbContext= new FundamentalsDBContext();
-        }
+       
         // GET: Customers
        
         public ActionResult Index()
         {
-            if (User.Identity.IsAuthenticated && User.IsInRole(Roles.CanEditCustomersRole))
+            if (User.Identity.IsAuthenticated && this.IsInRole(AvailableRoles))
                 return View();
             return View("IndexReadOnly");
         }
-        [Authorize]
+
+        [FuntamentalsAuthorize(new []{Roles.SuperAdminRole,Roles.AdminRole,Roles.CanEditCustomersRole})]
         public ActionResult Create()
         {
          
             return View("Customer", new CustomerViewModel());
         }
-        [Authorize]
+        [FuntamentalsAuthorize(new[] { Roles.SuperAdminRole, Roles.AdminRole, Roles.CanEditCustomersRole })]
         public ActionResult Edit(int id)
         {
             var customers = _dbContext.Customers.ToList();
@@ -43,7 +41,7 @@ namespace Fundamentals.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        [FuntamentalsAuthorize(new[] { Roles.SuperAdminRole, Roles.AdminRole, Roles.CanEditCustomersRole })]
         public ActionResult Save(CustomerViewModel customer)
         {
             if(!ModelState.IsValid)
@@ -63,10 +61,6 @@ namespace Fundamentals.Controllers
 
     
 
-        protected override void Dispose(bool disposing)
-        {
-            this._dbContext.Dispose();
-            base.Dispose(disposing);
-        }
+    
     }
 }

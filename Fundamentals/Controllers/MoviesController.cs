@@ -16,23 +16,19 @@ using File = Fundamentals.DomainModel.File;
 namespace Fundamentals.Controllers
 {
     [AllowAnonymous]
-    public class MoviesController : Controller
+    public class MoviesController : BaseController
     {
-        private readonly FundamentalsDBContext _dbContext;
+        protected override string[] AvailableRoles => new string[] { Roles.SuperAdminRole, Roles.AdminRole, Roles.CanEditMoviesRole };
 
-        public MoviesController()
-        {
-            _dbContext = new FundamentalsDBContext();
-        }
 
         public ActionResult Index()
         {
-            if(User.Identity.IsAuthenticated && User.IsInRole(Roles.CanEditMoviesRole))
+            if(User.Identity.IsAuthenticated && this.IsInRole(AvailableRoles))
                 return View();
             return View("IndexReadOnly");
         }
 
-        [Authorize(Roles = Roles.CanEditMoviesRole)]
+        [FuntamentalsAuthorize(new []{ Roles.SuperAdminRole, Roles.AdminRole, Roles.CanEditMoviesRole })]
         public ActionResult New()
         {
             EditMovieViewModel model = new EditMovieViewModel()
@@ -44,7 +40,7 @@ namespace Fundamentals.Controllers
             return View("Edit", model);
         }
 
-        [Authorize(Roles = Roles.CanEditMoviesRole)]
+        [FuntamentalsAuthorize(new[] { Roles.SuperAdminRole, Roles.AdminRole, Roles.CanEditMoviesRole })]
         public ActionResult Edit(int id)
         {
             var movie = _dbContext.Movies.SingleOrDefault(x => x.Id == id);
@@ -61,7 +57,7 @@ namespace Fundamentals.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = Roles.CanEditMoviesRole)]
+        [FuntamentalsAuthorize(new[] { Roles.SuperAdminRole, Roles.AdminRole, Roles.CanEditMoviesRole })]
         public ActionResult Delete(int id)
         {
             var movie = _dbContext.Movies.SingleOrDefault(x => x.Id == id);
@@ -73,7 +69,7 @@ namespace Fundamentals.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = Roles.CanEditMoviesRole)]
+        [FuntamentalsAuthorize(new[] { Roles.SuperAdminRole, Roles.AdminRole, Roles.CanEditMoviesRole })]
         [ValidateAntiForgeryToken]
         public ActionResult Save(EditMovieViewModel model, HttpPostedFileBase upload)
         {
@@ -118,11 +114,7 @@ namespace Fundamentals.Controllers
             return File(new byte[0], "audio/mp3");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            this._dbContext.Dispose();
-            base.Dispose(disposing);
-        }
+
 
     
     }
