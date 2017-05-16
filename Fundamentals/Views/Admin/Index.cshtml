@@ -52,7 +52,7 @@
         function InitTable(pendingOnly) {
             table =  $("#customers").DataTable({
             ajax: {
-                url: '@Url.Action("ApplicationUsers", "api")',
+                url: '@Url.Action("ApplicationUsers", "api")?pendingAuthorization=' + pendingOnly,
                method: "Post",
                dataSrc:""
             },
