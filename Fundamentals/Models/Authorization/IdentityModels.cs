@@ -32,14 +32,6 @@ namespace Fundamentals.Models.Authorization
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime BirthDate { get; set; }
 
-        [Required]
-        [StringLength(128)]
-        public string ClaimedRoleId { get; set; }
-
-        [DefaultValue(0)]
-        public bool RoleApproved { get; set; }
-
-       
     }
 
 

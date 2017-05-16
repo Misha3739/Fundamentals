@@ -12,7 +12,7 @@ namespace Fundamentals.Migrations
             AddColumn("dbo.AspNetUsers", "ClaimedRoleId", c => c.String(nullable: false, maxLength: 128));
             AddColumn("dbo.AspNetUsers", "RoleApproved", c => c.Boolean(nullable: false));
 
-            Sql($"INSERT INTO [dbo].[AspNetRoles] ([Id],[Name]) VALUES('{Guid.NewGuid()}','{Roles.DefaultRole}')");
+           
         }
         
         public override void Down()
