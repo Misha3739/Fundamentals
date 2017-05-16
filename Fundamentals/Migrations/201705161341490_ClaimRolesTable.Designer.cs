@@ -7,13 +7,13 @@ namespace Fundamentals.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ClaimRoleOnRegister : IMigrationMetadata
+    public sealed partial class ClaimRolesTable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ClaimRoleOnRegister));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ClaimRolesTable));
         
         string IMigrationMetadata.Id
         {
-            get { return "201705151021178_ClaimRoleOnRegister"; }
+            get { return "201705161341490_ClaimRolesTable"; }
         }
         
         string IMigrationMetadata.Source

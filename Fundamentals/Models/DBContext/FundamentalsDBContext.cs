@@ -50,8 +50,7 @@ namespace Fundamentals.Models.DBContext
 
         public DbSet<File> Files { get; set; }
 
-        //public override IDbSet<ApplicationUser> Users { get; set; }
+        public DbSet<ClaimRoles> ClaimRoles { get; set; }
 
-        //public override IDbSet<IdentityRole> Roles { get; set; }
     }
 }
