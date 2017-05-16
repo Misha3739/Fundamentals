@@ -4,5 +4,80 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Roles</h2>
 
+<table id="customers" class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th>
+            UserName
+        </th>
+        <th>
+            FirstName
+        </th>
+        <th>
+            LastName
+        </th>
+        <th>
+            BirthDate
+        </th>
+        <th>
+            Role
+        </th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+
+</table>
+
+<button type="button" class="form-control" style="width: 220px" id="filterBtn">All Users</button>
+
+<script>
+    $(document).ready(function () {
+
+        $("#filterBtn").click(function(e) {
+            if (e.target.textContent === "All Users") {
+                e.target.textContent = "Pending Authorization Users";
+                InitTable(false);
+            } else {
+                e.target.textContent = "All Users";
+                InitTable(true);
+            }
+        });
+
+        var table;
+
+        InitTable(false);
+
+        function InitTable(pendingOnly) {
+            table =  $("#customers").DataTable({
+            ajax: {
+                url: '@Url.Action("ApplicationUsers", "api")',
+               method: "Post",
+               dataSrc:""
+            },
+            columns: [{
+                data: "UserName"
+
+            },{
+                data: "FirstName"
+
+                },
+                {
+                    data: "LastName"
+                },
+                {
+                    data: "BirthDate"
+                },
+
+                ]
+    });
+        }
+
+
+
+
+
+    });
+
+    </script>

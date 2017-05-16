@@ -36,7 +36,7 @@ namespace Fundamentals.Migrations
            ,[BirthDate])
 VALUES
 ('{userId}',
-'userName',
+'{userName}',
 1,
 '{new FundamentalsPasswordHasher().HashPassword("Fergana12@")}',
 '{Guid.NewGuid()}',

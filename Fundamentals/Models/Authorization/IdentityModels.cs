@@ -36,6 +36,7 @@ namespace Fundamentals.Models.Authorization
         [StringLength(128)]
         public string ClaimedRoleId { get; set; }
 
+        [Required]
         [DefaultValue(0)]
         public bool RoleApproved { get; set; }
 
