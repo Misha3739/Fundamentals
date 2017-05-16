@@ -10,8 +10,6 @@ namespace Fundamentals.Migrations
     {
         public override void Up()
         {
-            Sql($"INSERT INTO [dbo].[AspNetRoles] ([Id],[Name]) VALUES('{Guid.NewGuid()}','{Roles.DefaultRole}')");
-
             Sql($"INSERT INTO [dbo].[AspNetRoles] ([Id],[Name]) VALUES('{Guid.NewGuid()}','{Roles.CanEditMoviesRole}')");
 
             Sql($"INSERT INTO [dbo].[AspNetRoles] ([Id],[Name]) VALUES('{Guid.NewGuid()}','{Roles.CanEditCustomersRole}')");

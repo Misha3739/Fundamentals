@@ -95,6 +95,10 @@ namespace Fundamentals.Models.Authorization
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime BirthDate { get; set; }
 
+        [Required]
+        [StringLength(128)]
+        [Display(Description = "Desired Role")]
+        public string ClaimedRoleId { get; set; }
 
         public List<IdentityRole> AvailableRoles { get; set; }
        

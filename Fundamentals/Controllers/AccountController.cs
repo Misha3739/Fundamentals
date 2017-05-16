@@ -165,7 +165,8 @@ namespace Fundamentals.Controllers
                     Email = model.Email,
                     BirthDate = model.BirthDate,
                     FirstName = model.FirstName,
-                    LastName = model.LastName
+                    LastName = model.LastName,
+                    ClaimedRoleId = model.ClaimedRoleId
 
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
