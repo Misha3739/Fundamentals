@@ -33,13 +33,14 @@
 <button type="button" class="form-control" style="width: 220px" id="filterBtn">All Users</button>
 
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
 
         var pendingOnly = true;
 
 
-
         var roles = [];
+        var users = [];
+
 
         $.ajax({
             url: '@Url.Action("Roles", "api")',
@@ -48,19 +49,37 @@
             roles = data;
         });
 
+       
+    
 
         var table = $("#users").DataTable({
             ajax: {
-                data: function() {
+                data:function() {
                     $('#users').DataTable().ajax.url(
                         '@Url.Action("ApplicationUsers", "api")?pendingAuthorization=' + pendingOnly
-                       );
-                    },
+                    );
+                },
                     method: "Post",
 
-                   dataSrc:""
+                    dataSrc: function(data) {
+                        users = [];
+                        for (var i = 0; i < data.length; i++) {
+                            users.push({
+                                Id: data[i].Id,
+                                UserName: data[i].UserName,
+                                FirstName: data[i].FirstName,
+                                LastName: data[i].LastName,
+                                BirthDate: data[i].BirthDate,
+                                ClaimedRoleId: data[i].ClaimedRoleId,
+                                OldClaimedRoleId: data[i].ClaimedRoleId,
+                                IsDirty: false
+
+                            });
+                        }
+                        return users;
+                    }
                    },
-              
+            dataSrc:users,
             columns: [{
                 data: "UserName"
 
@@ -87,7 +106,7 @@
                                 "text": v.Name,
                                 "value": v.Id
                             });
-                            if (data === v) {
+                            if (data.Id === v.Id) {
                                 $option.attr("selected", "selected");
                             }
                             $select.append($option);
