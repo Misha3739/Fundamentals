@@ -186,12 +186,14 @@
   <ItemGroup>
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\API\ApplicationUsersController.cs" />
+    <Compile Include="Controllers\API\RolesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Migrations\201705151021178_ClaimRoleOnRegister.cs" />
     <Compile Include="Migrations\201705151021178_ClaimRoleOnRegister.Designer.cs">
       <DependentUpon>201705151021178_ClaimRoleOnRegister.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\DTO\AspNerUserDTO.cs" />
+    <Compile Include="Models\DTO\AspNetRoleDto.cs" />
+    <Compile Include="Models\DTO\AspNetUserDto.cs" />
     <Compile Include="Utility\ControllerHelper.cs" />
     <Compile Include="Utility\FuntamentalsAuthorizeAttribute.cs" />
     <Compile Include="Migrations\201705150836280_SeedAdminRoles.cs" />

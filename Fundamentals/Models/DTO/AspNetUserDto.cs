@@ -2,7 +2,7 @@
 
 namespace Fundamentals.Models.DTO
 {
-    public class AspNerUserDTO
+    public class AspNetUserDto
     {
         public string Id { get; set; }
 

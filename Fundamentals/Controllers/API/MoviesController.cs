@@ -33,11 +33,11 @@ namespace Fundamentals.Controllers.API
         //GET
         [HttpGet]
         [AllowAnonymous]
-        public IEnumerable<MovieDTO> Get()
+        public IEnumerable<MovieDto> Get()
         {
             return _dbContext.Movies.Include(x=>x.Ganre)
                 .Select(
-                Mapper.Map<MovieViewModel,MovieDTO>);
+                Mapper.Map<MovieViewModel,MovieDto>);
         }
     }
 }

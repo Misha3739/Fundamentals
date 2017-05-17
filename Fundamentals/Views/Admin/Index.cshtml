@@ -6,7 +6,7 @@
 
 <h2>Roles</h2>
 
-<table id="customers" class="table table-bordered table-hover">
+<table id="users" class="table table-bordered table-hover">
     <thead>
     <tr>
         <th>
@@ -35,27 +35,32 @@
 <script>
     $(document).ready(function () {
 
-        $("#filterBtn").click(function(e) {
-            if (e.target.textContent === "All Users") {
-                e.target.textContent = "Pending Authorization Users";
-                InitTable(false);
-            } else {
-                e.target.textContent = "All Users";
-                InitTable(true);
-            }
+        var pendingOnly = true;
+
+
+
+        var roles = [];
+
+        $.ajax({
+            url: '@Url.Action("Roles", "api")',
+            method: "GET"
+        }).done(function(data) {
+            roles = data;
         });
 
-        var table;
 
-        InitTable(false);
-
-        function InitTable(pendingOnly) {
-            table =  $("#customers").DataTable({
+        var table = $("#users").DataTable({
             ajax: {
-                url: '@Url.Action("ApplicationUsers", "api")?pendingAuthorization=' + pendingOnly,
-               method: "Post",
-               dataSrc:""
-            },
+                data: function() {
+                    $('#users').DataTable().ajax.url(
+                        '@Url.Action("ApplicationUsers", "api")?pendingAuthorization=' + pendingOnly
+                       );
+                    },
+                    method: "Post",
+
+                   dataSrc:""
+                   },
+              
             columns: [{
                 data: "UserName"
 
@@ -69,12 +74,41 @@
                 {
                     data: "BirthDate"
                 },
+                {
+                    data: "ClaimedRoleId",
 
+                    render: function (data, type, role) {
+                        var $select = $("<select></select>", {
+                            "id": 'roleEditor'+data.Id,
+                            "value": role.ClaimedRoleId
+                        });
+                        $.each(roles, function (k, v) {
+                            var $option = $("<option></option>", {
+                                "text": v.Name,
+                                "value": v.Id
+                            });
+                            if (data === v) {
+                                $option.attr("selected", "selected");
+                            }
+                            $select.append($option);
+                        });
+                        return $select.prop("outerHTML");
+                    }
+                }
                 ]
     });
-        }
 
 
+           $("#filterBtn").click(function (e) {
+               if (e.target.textContent === "All Users") {
+                   e.target.textContent = "Pending Authorization Users";
+                   pendingOnly = false;
+               } else {
+                   e.target.textContent = "All Users";
+                   pendingOnly = true;
+               }
+               table.ajax.reload();
+           });
 
 
 

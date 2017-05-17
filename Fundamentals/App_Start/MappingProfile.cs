@@ -10,13 +10,15 @@ namespace Fundamentals
     {
        public MappingProfile()
         {
-            Mapper.CreateMap<MovieViewModel, MovieDTO>();
+            Mapper.CreateMap<MovieViewModel, MovieDto>();
 
-            Mapper.CreateMap<MovieDTO, MovieViewModel>();
+            Mapper.CreateMap<MovieDto, MovieViewModel>();
 
-            Mapper.CreateMap<Ganres, GanreDTO>();
+            Mapper.CreateMap<Ganres, GanreDto>();
 
-            Mapper.CreateMap<ApplicationUser, AspNerUserDTO>();
+            Mapper.CreateMap<ApplicationUser, AspNetUserDto>();
+
+            Mapper.CreateMap<IdentityRole, AspNetRoleDto>();
         }
     }
 }

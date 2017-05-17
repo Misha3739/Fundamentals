@@ -6,7 +6,6 @@ using AutoMapper;
 using Fundamentals.Models.Authorization;
 using Fundamentals.Models.DTO;
 using Fundamentals.Utility;
-using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Fundamentals.Controllers.API
 {
@@ -15,11 +14,11 @@ namespace Fundamentals.Controllers.API
     {
         // POST ---- /api/ApplicationUsers
         [HttpPost]
-        [ResponseType(typeof(AspNerUserDTO))]
+        [ResponseType(typeof(AspNetUserDto))]
         public IHttpActionResult GetApplicationUsers([FromUri] bool pendingAuthorization)
         {
             var superAdminRole = _dbContext.Roles.Single(x => x.Name == Roles.SuperAdminRole);
-            var allUsers = _dbContext.Users.Where(x=>!(x.RoleApproved && x.ClaimedRoleId == superAdminRole.Id)).Select(Mapper.Map<ApplicationUser, AspNerUserDTO>);
+            var allUsers = _dbContext.Users.Where(x=>!(x.RoleApproved && x.ClaimedRoleId == superAdminRole.Id)).Select(Mapper.Map<ApplicationUser, AspNetUserDto>);
             return Ok(pendingAuthorization ? allUsers.Where(x => x.RoleApproved == false) : allUsers);
         }
     }

@@ -2,7 +2,7 @@
 
 namespace Fundamentals.Models.DTO
 {
-    public class GanreDTO
+    public class GanreDto
     {
         public int Id { get; set; }
 

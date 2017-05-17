@@ -8,7 +8,7 @@ using Fundamentals.Models.Validation;
 
 namespace Fundamentals.Models.DTO
 {
-    public class MovieDTO
+    public class MovieDto
     {
         public int Id { get; set; }
 
@@ -16,7 +16,7 @@ namespace Fundamentals.Models.DTO
 
         public DateTime ReleaseDate { get; set; }
 
-        public GanreDTO Ganre { get; set; }
+        public GanreDto Ganre { get; set; }
 
         public int GanreId { get; set; }
 
