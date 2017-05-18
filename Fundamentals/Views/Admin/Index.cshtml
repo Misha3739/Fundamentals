@@ -100,7 +100,7 @@
                     data: "ClaimedRoleId",
 
                     render: function (data, type, user) {
-                        var $select = $("<select></select>",
+                        var $select = $("<select multiple></select>",
                         {
                             "id": 'roleEditor_' + user.Id,
                             "value": user.ClaimedRoleId
@@ -167,10 +167,22 @@
                     data: {
                         Id: user.Id,
                         AppliedRoleId: user.ClaimedRoleId
+                    },
+                    statusCode: {
+                        500: function (xhr) {
+                          
+                        },
+                        400: function (xhr) {
+                          
+                        },
+                        200: function (xhr) {
+                           
+                        }
                     }
-                }).done(function(data) {
-                 button[0].disabled = true;
-             });
+             }).done(function (data) {
+                 
+                     button[0].disabled = true;
+                 });
             });
 
     });

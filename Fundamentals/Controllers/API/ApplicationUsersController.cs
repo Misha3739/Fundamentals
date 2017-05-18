@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -21,7 +22,9 @@ namespace Fundamentals.Controllers.API
         public IHttpActionResult GetApplicationUsers([FromUri] bool pendingAuthorization)
         {
             var superAdminRole = _dbContext.Roles.Single(x => x.Name == Roles.SuperAdminRole);
-            var allUsers = _dbContext.Users.Where(x=>!(x.RoleApproved && x.ClaimedRoleId == superAdminRole.Id)).Select(Mapper.Map<ApplicationUser, AspNetUserDto>);
+            var allUsers = _dbContext.Users
+                //.Where(x=>!(x.RoleApproved && x.ClaimedRoleId == superAdminRole.Id)).
+                .Select(Mapper.Map<ApplicationUser, AspNetUserDto>);
             return Ok(pendingAuthorization ? allUsers.Where(x => x.RoleApproved == false) : allUsers);
         }
 
@@ -29,21 +32,24 @@ namespace Fundamentals.Controllers.API
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutApplicationUsers([FromBody] ApplicationUserRequest requestParams)
         {
-            if (requestParams != null)
+            if (requestParams?.Id != null && requestParams.AppliedRoles!= null && requestParams.AppliedRoles.Any())
             {
                 var manager =
-               new ApplicationUserManager(new UserStore<ApplicationUser>(_dbContext))
-               {
-                   PasswordHasher = new FundamentalsPasswordHasher()
-               };
+                    new ApplicationUserManager(new UserStore<ApplicationUser>(_dbContext))
+                    {
+                        PasswordHasher = new FundamentalsPasswordHasher()
+                    };
 
                 var user = _dbContext.Users.Find(requestParams.Id);
-                var role = _dbContext.Roles.Single(x => x.Id == requestParams.AppliedRoleId);
-                user.ClaimedRoleId = requestParams.AppliedRoleId;
+                //var newRole = _dbContext.Roles.Single(x => x.Id == requestParams.AppliedRoleId);
+                var oldRole = _dbContext.Roles.Single(x => x.Id == user.ClaimedRoleId);
+                //user.ClaimedRoleId = requestParams.AppliedRoleId;
                 user.RoleApproved = true;
 
                 await _dbContext.SaveChangesAsync();
-                await manager.AddToRoleAsync(requestParams.Id, role.Name);
+                await manager.RemoveFromRoleAsync(requestParams.Id, oldRole.Name);
+                //await manager.AddToRoleAsync(requestParams.Id, newRole.Name);
+                
 
                 return Ok();
             }
@@ -55,6 +61,6 @@ namespace Fundamentals.Controllers.API
     {
         public string Id { get; set; }
 
-        public string AppliedRoleId { get; set; }
+        public List<string> AppliedRoles { get; set; }
     }
 }
