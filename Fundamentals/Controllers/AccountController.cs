@@ -145,7 +145,7 @@ namespace Fundamentals.Controllers
             
             RegisterViewModel model = new RegisterViewModel()
             {
-                AvailableRoles = _dbContext.Roles.ToList()
+                AvailableRoles = _dbContext.Roles.Where(x => x.Name != Roles.SuperAdminRole).ToList()
             };
             return View(model);
         }

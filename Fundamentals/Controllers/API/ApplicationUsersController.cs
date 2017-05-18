@@ -32,7 +32,7 @@ namespace Fundamentals.Controllers.API
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutApplicationUsers([FromBody] ApplicationUserRequest requestParams)
         {
-            if (requestParams?.Id != null && requestParams.AppliedRoles!= null && requestParams.AppliedRoles.Any())
+            if (requestParams?.Id != null && requestParams.AppliedRoleId != null)
             {
                 var manager =
                     new ApplicationUserManager(new UserStore<ApplicationUser>(_dbContext))
@@ -41,14 +41,14 @@ namespace Fundamentals.Controllers.API
                     };
 
                 var user = _dbContext.Users.Find(requestParams.Id);
-                //var newRole = _dbContext.Roles.Single(x => x.Id == requestParams.AppliedRoleId);
+                var newRole = _dbContext.Roles.Single(x => x.Id == requestParams.AppliedRoleId);
                 var oldRole = _dbContext.Roles.Single(x => x.Id == user.ClaimedRoleId);
-                //user.ClaimedRoleId = requestParams.AppliedRoleId;
+                user.ClaimedRoleId = requestParams.AppliedRoleId;
                 user.RoleApproved = true;
 
                 await _dbContext.SaveChangesAsync();
                 await manager.RemoveFromRoleAsync(requestParams.Id, oldRole.Name);
-                //await manager.AddToRoleAsync(requestParams.Id, newRole.Name);
+                await manager.AddToRoleAsync(requestParams.Id, newRole.Name);
                 
 
                 return Ok();
@@ -61,6 +61,6 @@ namespace Fundamentals.Controllers.API
     {
         public string Id { get; set; }
 
-        public List<string> AppliedRoles { get; set; }
+        public string AppliedRoleId { get; set; }
     }
 }
