@@ -4,8 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Roles</h2>
-
 <table id="users" class="table table-bordered table-hover">
     <thead>
     <tr>
@@ -24,13 +22,18 @@
         <th>
             Role
         </th>
+        <th>
+           Apply
+        </th>
     </tr>
     </thead>
     <tbody></tbody>
 
 </table>
 
+
 <button type="button" class="form-control" style="width: 220px" id="filterBtn">All Users</button>
+
 
 <script>
     $(document).ready(function() {
@@ -49,8 +52,8 @@
             roles = data;
         });
 
-       
-    
+
+
 
         var table = $("#users").DataTable({
             ajax: {
@@ -96,27 +99,52 @@
                 {
                     data: "ClaimedRoleId",
 
-                    render: function (data, type, role) {
-                        var $select = $("<select></select>", {
-                            "id": 'roleEditor'+data.Id,
-                            "value": role.ClaimedRoleId
-                        });
+                    render: function (data, type, user) {
+                        var $select = $("<select></select>",
+                        {
+                            "id": 'roleEditor_' + user.Id,
+                            "value": user.ClaimedRoleId
+                    });
                         $.each(roles, function (k, v) {
                             var $option = $("<option></option>", {
                                 "text": v.Name,
                                 "value": v.Id
                             });
-                            if (data.Id === v.Id) {
+                            if (data === v.Id) {
                                 $option.attr("selected", "selected");
                             }
                             $select.append($option);
+
                         });
                         return $select.prop("outerHTML");
                     }
+                },
+                {
+                    data: "Id",
+                    render: function (data) {
+                        return "<button class=\"btn usr-update\" disabled data-user-id=" + data + ">Apply</button>";
+                    }
                 }
+
                 ]
     });
 
+        $("#users").on("change", "select", function (e) {
+            var selector = this;
+            var userId = selector.id.replace("roleEditor_", "");
+            var user = $.grep(users, function (e) { return e.Id === userId; })[0];
+            user.ClaimedRoleId = this.value;
+            if (user.ClaimedRoleId != user.OldClaimedRoleId) {
+                user.IsDirty = true;
+                $(selector).parents("tr")[0].querySelector(".usr-update").disabled = false;
+            } else {
+                user.IsDirty = false;
+                $(selector).parents("tr")[0].querySelector(".usr-update").disabled = true;
+
+            }
+
+
+        });
 
            $("#filterBtn").click(function (e) {
                if (e.target.textContent === "All Users") {
@@ -129,7 +157,21 @@
                table.ajax.reload();
            });
 
-
+           $("#users").on("click", ".usr-update", function() {
+            var button = $(this);
+            var userId = button.attr("data-user-id");
+            var user = $.grep(users, function (e) { return e.Id === userId; })[0];
+             $.ajax({
+                    url: '@Url.Action("ApplicationUsers", "api")',
+                    method: "PUT",
+                    data: {
+                        Id: user.Id,
+                        AppliedRoleId: user.ClaimedRoleId
+                    }
+                }).done(function(data) {
+                 button[0].disabled = true;
+             });
+            });
 
     });
 
