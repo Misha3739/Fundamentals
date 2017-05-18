@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using Fundamentals.DomainModel;
 using Fundamentals.Models.Authorization;
+using Fundamentals.Models.Error;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Fundamentals.Models.DBContext
@@ -44,14 +45,11 @@ namespace Fundamentals.Models.DBContext
 
         public DbSet<MovieViewModel> Movies { get; set; }
 
-       
-
         public DbSet<Ganres> Ganres { get; set; }
 
         public DbSet<File> Files { get; set; }
 
-        //public override IDbSet<ApplicationUser> Users { get; set; }
+        public DbSet<AppError> Errors { get; set; }
 
-        //public override IDbSet<IdentityRole> Roles { get; set; }
     }
 }

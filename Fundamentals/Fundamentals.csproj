@@ -192,8 +192,13 @@
     <Compile Include="Migrations\201705151021178_ClaimRoleOnRegister.Designer.cs">
       <DependentUpon>201705151021178_ClaimRoleOnRegister.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705181728169_ErrorHandling.cs" />
+    <Compile Include="Migrations\201705181728169_ErrorHandling.Designer.cs">
+      <DependentUpon>201705181728169_ErrorHandling.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\DTO\AspNetRoleDto.cs" />
     <Compile Include="Models\DTO\AspNetUserDto.cs" />
+    <Compile Include="Models\Error\AppError.cs" />
     <Compile Include="Utility\ControllerHelper.cs" />
     <Compile Include="Utility\FuntamentalsAuthorizeAttribute.cs" />
     <Compile Include="Migrations\201705150836280_SeedAdminRoles.cs" />
@@ -458,7 +463,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\Customers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -523,6 +527,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705151021178_ClaimRoleOnRegister.resx">
       <DependentUpon>201705151021178_ClaimRoleOnRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705181728169_ErrorHandling.resx">
+      <DependentUpon>201705181728169_ErrorHandling.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

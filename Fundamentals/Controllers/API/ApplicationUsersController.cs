@@ -23,7 +23,7 @@ namespace Fundamentals.Controllers.API
         {
             var superAdminRole = _dbContext.Roles.Single(x => x.Name == Roles.SuperAdminRole);
             var allUsers = _dbContext.Users
-                //.Where(x=>!(x.RoleApproved && x.ClaimedRoleId == superAdminRole.Id)).
+                .Where(x=>!(x.RoleApproved && x.ClaimedRoleId == superAdminRole.Id))
                 .Select(Mapper.Map<ApplicationUser, AspNetUserDto>);
             return Ok(pendingAuthorization ? allUsers.Where(x => x.RoleApproved == false) : allUsers);
         }
