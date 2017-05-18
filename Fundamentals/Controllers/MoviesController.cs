@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Fundamentals.DomainModel;
@@ -71,7 +72,7 @@ namespace Fundamentals.Controllers
         [HttpPost]
         [FuntamentalsAuthorize(new[] { Roles.SuperAdminRole, Roles.AdminRole, Roles.CanEditMoviesRole })]
         [ValidateAntiForgeryToken]
-        public ActionResult Save(EditMovieViewModel model, HttpPostedFileBase upload)
+        public async Task<ActionResult> Save(EditMovieViewModel model, HttpPostedFileBase upload)
         {
             if (!ModelState.IsValid)
             {
@@ -82,16 +83,16 @@ namespace Fundamentals.Controllers
             {
                 var file = new File
                 {
-                    FileName = System.IO.Path.GetFileName(upload.FileName),
+                    FileName = Path.GetFileName(upload.FileName),
                     ContentType = upload.ContentType
                 };
-                using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                using (var reader = new BinaryReader(upload.InputStream))
                 {
                     file.Content = reader.ReadBytes(upload.ContentLength);
                 }
 
                 var saved = _dbContext.Files.Add(file);
-                _dbContext.SaveChanges();
+                await  _dbContext.SaveChangesAsync();
                 model.Movie.FileId = saved.Id;
             }
 
