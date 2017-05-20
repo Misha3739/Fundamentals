@@ -13,6 +13,7 @@ namespace Fundamentals
                         "~/Scripts/bootstrap.js",
                        "~/Scripts/bootstrap-datepicker.js",
                          "~/Scripts/respond.js",
+                         "~/Scripts/toastr.js",
                          "~/Scripts/Datatables/jquery.datatables.js",
                          "~/Scripts/Datatables/datatables.bootstrap.js"));
 
@@ -39,6 +40,7 @@ namespace Fundamentals
                          "~/Content/bootstrap-datepicker.css",
                         "~/Content/bootstrap.solar.css",
                       "~/Content/Site.css",
+                      "~/Content/toastr.css",
                       "~/Content/datatables/css/datatables.bootstrap.css"));
 
   

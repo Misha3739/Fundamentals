@@ -170,13 +170,13 @@
                     },
                     statusCode: {
                         500: function (xhr) {
-                          
+                            toastr.error("Role apply - Server error: "+xhr.status);
                         },
                         400: function (xhr) {
-                          
+                            toastr.error("Role apply - Server error: " + xhr.status);
                         },
                         200: function (xhr) {
-                           
+                            toastr.success("Role for user "+user.UserName+" successfully applied");
                         }
                     }
              }).done(function (data) {
