@@ -1,8 +1,73 @@
-﻿@model 
+﻿@model List<Fundamentals.Models.Admin.UserInRolesViewModel>
 
 @{
     ViewBag.Title = "Admin";
-    Layout = "_Layout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@Styles.Render("~/Content/custom-bootstrap-tree.css")
 <h2>Admin</h2>
+
+
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading panel-head">Author Book Tree View</div>
+    <div id="frm-author" class="panel-body">
+        @using (Html.BeginForm())
+        {
+
+            <div class="tree">
+                @for (int i = 0; i < Model.Count; i++)
+                {
+
+                    <ul>
+                        <li>
+                            <a href="#">
+                                @Html.CheckBoxFor(model => model[i].IsDirty, new { @class = "tree-checkbox parent",@readonly="true", @id = @Model[i].UserId })
+
+                                <label for=@i>
+                                    <strong>Author:</strong>
+                                    @Html.DisplayFor(model => model[i].UserName)
+
+                                </label>
+                            </a>
+                            <ul>
+                                @for (int j = 0; j < Model[i].Roles.Count; j++)
+                                {
+                                    int k = 1 + j;
+                                    @Html.HiddenFor(model => model[i].Roles[j].Id)
+
+                                    <li>
+                                        <a href="#">
+                                            @Html.CheckBoxFor(model => model[i].Roles[j].IsChecked, new { @class = "tree-checkbox node-item", @iid = i + "" + j })
+
+                                            <label for=@i@j>
+                                                <strong>Book @(k):</strong> @Html.DisplayFor(model => model[i].Roles[j].Name)
+                                            </label>
+                                        </a>
+                                    </li>
+
+                                }
+
+                            </ul>
+                        </li>
+                    </ul>
+                }
+
+            </div>
+            <div class="form-group">
+                <div class="col-lg-9"></div>
+                <div class="col-lg-3">
+                    <button class="btn btn-success" id="btnSubmit" type="submit">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+@section scripts{
+    @*@Scripts.Render("~/Scripts/tree.js")*@
+}  

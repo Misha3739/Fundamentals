@@ -12,7 +12,7 @@ namespace Fundamentals.Migrations
             string script =
       @"
         CREATE VIEW dbo.UserInRolesDto 
-        AS SELECT u.Id AS UserId, u.UserName, u.LastName, u.FirstName FROM dbo.AspNetUsers u
+        AS SELECT u.Id AS UserId, u.UserName, u.LastName, u.FirstName,u.RoleApproved,u.ClaimedRoleId,r.Id as RoleId,r.Name as RoleName FROM dbo.AspNetUsers u
         INNER JOIN dbo.AspNetUserRoles ur ON ur.UserId = u.Id
         INNER JOIN dbo.AspNetRoles r ON r.Id = ur.RoleId";
             FundamentalsDBContext ctx = new FundamentalsDBContext();

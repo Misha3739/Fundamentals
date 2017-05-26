@@ -200,6 +200,9 @@
     <Compile Include="Migrations\201705261656410_UserInRolesDto.Designer.cs">
       <DependentUpon>201705261656410_UserInRolesDto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Admin\AspNetRoleViewModel.cs" />
+    <Compile Include="Models\Admin\UserInRolesViewModel.cs" />
+    <Compile Include="Models\DBContext\FundamentalsDBContextExtension.cs" />
     <Compile Include="Models\DTO\UserInRolesDTO.cs" />
     <Compile Include="Models\DTO\AspNetRoleDto.cs" />
     <Compile Include="Models\DTO\AspNetUserDto.cs" />
@@ -322,6 +325,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.solar.css" />
+    <Content Include="Content\custom-bootstrap-tree.css" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\toastr.css" />
