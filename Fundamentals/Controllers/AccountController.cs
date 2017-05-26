@@ -196,6 +196,8 @@ namespace Fundamentals.Controllers
             }
 
             // If we got this far, something failed, redisplay form
+            if (model.AvailableRoles == null)
+                model.AvailableRoles = _dbContext.Roles.Where(x => x.Name != Roles.SuperAdminRole).ToList();
             return View(model);
         }
 
