@@ -13,7 +13,7 @@ namespace Fundamentals.Controllers
         // GET: Admin
         public ActionResult Index()
         {
-            return View();
+            return View("Tree");
         }
     }
 }

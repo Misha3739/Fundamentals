@@ -196,6 +196,11 @@
     <Compile Include="Migrations\201705181728169_ErrorHandling.Designer.cs">
       <DependentUpon>201705181728169_ErrorHandling.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705261656410_UserInRolesDto.cs" />
+    <Compile Include="Migrations\201705261656410_UserInRolesDto.Designer.cs">
+      <DependentUpon>201705261656410_UserInRolesDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTO\UserInRolesDTO.cs" />
     <Compile Include="Models\DTO\AspNetRoleDto.cs" />
     <Compile Include="Models\DTO\AspNetUserDto.cs" />
     <Compile Include="Models\Error\AppError.cs" />
@@ -466,6 +471,7 @@
     <Content Include="Views\Movies\IndexReadOnly.cshtml" />
     <Content Include="Views\Customers\IndexReadOnly.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Tree.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -536,6 +542,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705181728169_ErrorHandling.resx">
       <DependentUpon>201705181728169_ErrorHandling.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705261656410_UserInRolesDto.resx">
+      <DependentUpon>201705261656410_UserInRolesDto.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
