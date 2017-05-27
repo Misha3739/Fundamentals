@@ -5,15 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @Styles.Render("~/Content/custom-bootstrap-tree.css")
-<h2>Admin</h2>
-
 
 
 
 <div class="panel panel-primary">
-    <div class="panel-heading panel-head">Author Book Tree View</div>
     <div id="frm-author" class="panel-body">
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("Save","Admin",FormMethod.Post,Model))
         {
 
             <div class="tree">
@@ -21,12 +18,14 @@
                 {
 
                     <ul>
-                        <li>
+                        <li class="li-parent">
                             <a href="#">
-                                @Html.CheckBoxFor(model => model[i].IsDirty, new { @class = "tree-checkbox parent",@readonly="true", @id = @Model[i].UserId })
+                                @Html.HiddenFor(model => model[i].UserId)
+                                @Html.HiddenFor(model => model[i].IsDirty)
+                                @Html.HiddenFor(model => model[i].UserName)
+                                @*@Html.CheckBoxFor(model => model[i].IsDirty, new { @class = "tree-checkbox parent",@readonly="true", @id = @Model[i].UserId })*@
 
                                 <label for=@i>
-                                    <strong>Author:</strong>
                                     @Html.DisplayFor(model => model[i].UserName)
 
                                 </label>
@@ -36,13 +35,16 @@
                                 {
                                     int k = 1 + j;
                                     @Html.HiddenFor(model => model[i].Roles[j].Id)
-
-                                    <li>
+                                    @Html.HiddenFor(model => model[i].Roles[j].UserId)
+                                    @Html.HiddenFor(model => model[i].Roles[j].IsAssigned)
+                                    @Html.HiddenFor(model => model[i].Roles[j].IsDirty)
+                                    @Html.HiddenFor(model => model[i].Roles[j].Name)
+                                    <li class="li-child">
                                         <a href="#">
                                             @Html.CheckBoxFor(model => model[i].Roles[j].IsChecked, new { @class = "tree-checkbox node-item", @iid = i + "" + j })
 
                                             <label for=@i@j>
-                                                <strong>Book @(k):</strong> @Html.DisplayFor(model => model[i].Roles[j].Name)
+                                                @Html.DisplayFor(model => model[i].Roles[j].Name)
                                             </label>
                                         </a>
                                     </li>
@@ -68,6 +70,5 @@
     </div>
 </div>
 
-@section scripts{
-    @*@Scripts.Render("~/Scripts/tree.js")*@
-}  
+@Scripts.Render("~/Scripts/AdminTree.js")
+    

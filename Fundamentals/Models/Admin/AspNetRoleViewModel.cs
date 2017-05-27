@@ -11,5 +11,7 @@ namespace Fundamentals.Models.Admin
         public bool IsChecked { get; set; }
 
         public bool IsDirty { get; set; }
+
+        public bool IsAssigned { get; set; }
     }
 }
