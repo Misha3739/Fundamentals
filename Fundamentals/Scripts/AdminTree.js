@@ -7,29 +7,25 @@ $(function () {
                 $(document).on('click',
                     '.tree li a input[type="checkbox"]',
                     function () {
-                        var userNode = $(this).parents('.tree ul').parent(".ul-parent");
-                       // var user = userNode.child("");
+                        var selected = $(this);
+
+                        //set User's IsDirty
+                        var userNode = selected.parents(".li-parent");
+                        var userIsDirty = userNode.children("a").children(".input-dirty-parent");
+                        userIsDirty.prop("value", true);
+
+                        //set Child IsDirty
+                        var roleIsDirty = selected.parents(".li-child").children(".input-dirty-child");
+                        var roleIsAssigned = selected.parents(".li-child").children(".input-assigned-child");
+                        var isAssigned = roleIsAssigned.prop("value");
+                        var isChecked = selected.prop("checked");
+                        var isDirty = isChecked != isAssigned;
+                        roleIsDirty.prop("value",isDirty);
 
 
                     });
             }
-            //        function () {
-            //            $(this).closest('li').find('ul input[type="checkbox"]')
-            //                .prop('checked', $(this).is(':checked'));
-            //        }).on('click',
-            //        '.node-item',
-            //        function () {
-            //            var parentNode = $(this).parents('.tree ul');
-            //            if ($(this).is(':checked')) {
-            //                parentNode.find('li a .parent').prop('checked', true);
-            //            } else {
-            //                var elements = parentNode.find('ul input[type="checkbox"]:checked');
-            //                if (elements.length == 0) {
-            //                    parentNode.find('li a .parent').prop('checked', false);
-            //                }
-            //            }
-            //        });
-            //};
+          
 
             $this.init = function () {
                 treeNodeClick();
