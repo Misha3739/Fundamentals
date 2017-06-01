@@ -9,6 +9,8 @@ namespace Fundamentals.Migrations
     {
         public override void Up()
         {
+            var defaultRoleId = Sql($"SELECT TOP 1 ID FROM AspNetRoles WHERE Name = {Roles.DefaultRole}");
+
             Sql($@"INSERT INTO [dbo].[AspNetUsers]
            ([Id]
            ,[Email]
@@ -23,6 +25,7 @@ namespace Fundamentals.Migrations
            ,[UserName]
            ,[FirstName]
            ,[LastName]
+            ,[ClaimedRoleId]
            ,[BirthDate])
 VALUES
 ('{Guid.NewGuid()}',
@@ -38,6 +41,7 @@ VALUES
 'User1@mail.ru',
 'Fedorov',
 'Vasiliy',
+,
  '1993-01-02')");
 
             Sql($@"INSERT INTO [dbo].[AspNetUsers]

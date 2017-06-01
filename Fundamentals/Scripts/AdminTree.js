@@ -2,6 +2,21 @@
 $(function () {
         function Tree() {
             var $this = this;
+            
+            function MarkUnapprovedRoles() {
+                 var parents = $("#frm-author").find(".li-parent");
+                 for (var parent of parents) {
+                     var adminApproved = $(parent).children("a").children(".user-admin-approved").prop("value");
+                     if (adminApproved == "False") {
+                         var parentHead = $(parent).children("a");
+                         parentHead.addClass("not-approved");
+
+
+                         var children = $(parent).children("ul").children("li .li-child").children("a");
+                         children.addClass("not-approved");
+                     }
+                }
+            }
 
             function treeNodeClick() {
                 $(document).on('click',
@@ -28,6 +43,7 @@ $(function () {
           
 
             $this.init = function () {
+                MarkUnapprovedRoles();
                 treeNodeClick();
             }
         }

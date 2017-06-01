@@ -56,10 +56,15 @@ namespace Fundamentals.Controllers
                     if (x.IsDirty)
                     {
                         var rolesToDelete = x.Roles.Where(r => r.IsDirty && !r.IsChecked).Select(r => r.Name).ToArray();
-                        userManager.RemoveFromRoles(x.UserId, rolesToDelete.ToArray());
+                        userManager.RemoveFromRoles(x.UserId, rolesToDelete);
 
                         var rolesToAdd = x.Roles.Where(r => r.IsDirty && r.IsChecked).Select(r => r.Name).ToArray();
                         userManager.AddToRoles(x.UserId, rolesToAdd);
+
+                     
+                        var dbUser = _dbContext.Users.Find(x.UserId);
+                        dbUser.RoleApproved = true;
+                        _dbContext.SaveChanges();
                     }
                 }
             )); 

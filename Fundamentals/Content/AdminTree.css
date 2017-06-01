@@ -12,3 +12,12 @@ input > .input-dirty-child {
 
 input > .input-assigned-child {
 }
+input > .user-admin-approved {
+    
+}
+
+.not-approved {
+    background: red;
+    color: #ffffff;
+    border: 1px solid red;
+}

@@ -24,6 +24,7 @@
                                 @Html.HiddenFor(model => model[i].UserId)
                                 @Html.HiddenFor(model => model[i].IsDirty,new {id="IsDirty_"+Model[i].UserId, @class= "input-dirty-parent" })
                                 @Html.HiddenFor(model => model[i].UserName)
+                                @Html.HiddenFor(model => model[i].RoleApproved,new { @class = "user-admin-approved" })
                                 @*@Html.CheckBoxFor(model => model[i].IsDirty, new { @class = "tree-checkbox parent",@readonly="true", @id = @Model[i].UserId })*@
 
                                 <label for=@i>
@@ -72,5 +73,8 @@
     </div>
 </div>
 
+
 @Scripts.Render("~/Scripts/AdminTree.js")
+
+
     
