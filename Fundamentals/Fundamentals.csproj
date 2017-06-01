@@ -200,6 +200,10 @@
     <Compile Include="Migrations\201705261656410_UserInRolesDto.Designer.cs">
       <DependentUpon>201705261656410_UserInRolesDto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706012000057_AddDummyUsers.cs" />
+    <Compile Include="Migrations\201706012000057_AddDummyUsers.Designer.cs">
+      <DependentUpon>201706012000057_AddDummyUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Admin\AspNetRoleViewModel.cs" />
     <Compile Include="Models\Admin\UserInRolesViewModel.cs" />
     <Compile Include="Models\DBContext\FundamentalsDBContextExtension.cs" />
@@ -551,6 +555,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705261656410_UserInRolesDto.resx">
       <DependentUpon>201705261656410_UserInRolesDto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706012000057_AddDummyUsers.resx">
+      <DependentUpon>201706012000057_AddDummyUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
